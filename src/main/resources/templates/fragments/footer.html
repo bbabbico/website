@@ -1,0 +1,14 @@
+<!-- templates/fragments/footer.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+
+<!-- footer fragment  -->
+<footer th:fragment="footer-fragment (title)" class="bg-white border-t mt-10">
+  <div class="max-w-6xl mx-auto py-6 text-center text-gray-500 text-sm">
+    <p th:text="|${title} Template Made with using TailwindCSS|"></p>
+  </div>
+</footer>
+
+</body>
+</html>

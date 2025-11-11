@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이페이지 | Inflearn 스타일</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+<!-- ✅ Header -->
+<header class="bg-white shadow-sm fixed w-full z-10">
+  <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+    <!-- 로고 -->
+    <h1 class="text-2xl font-bold text-emerald-600 cursor-pointer" th:onclick="'location.href=\'/\' '">
+      Inflearn Clone
+    </h1>
+
+    <!-- 우측: 환영문구 + 로그아웃 -->
+    <div class="flex items-center space-x-4" th:if="${member}">
+                <span class="text-gray-700 font-medium">
+                    환영합니다, <span class="text-emerald-600 font-semibold" th:text="${member.name}"></span> 님 👋
+                </span>
+      <form action="/logout" method="post">
+        <button type="submit"
+                class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition">
+          로그아웃
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- ✅ Main Section -->
+<main class="flex-grow flex items-center justify-center mt-28">
+  <div class="bg-white shadow-lg rounded-2xl p-10 w-full max-w-lg">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">마이페이지</h2>
+
+    <!-- 회원 정보 카드 -->
+    <div class="space-y-6">
+      <div class="flex justify-between items-center border-b pb-3">
+        <span class="text-gray-500 font-medium">이름</span>
+        <span class="text-gray-800 font-semibold" th:text="${member.name}"></span>
+      </div>
+
+      <div class="flex justify-between items-center border-b pb-3">
+        <span class="text-gray-500 font-medium">아이디</span>
+        <span class="text-gray-800 font-semibold" th:text="${member.loginId}"></span>
+      </div>
+
+      <div class="flex justify-between items-center border-b pb-3">
+        <span class="text-gray-500 font-medium">이메일</span>
+        <span class="text-gray-800 font-semibold" th:text="${member.email}"></span>
+      </div>
+
+      <div class="flex justify-between items-center border-b pb-3">
+        <span class="text-gray-500 font-medium">비밀번호</span>
+        <span class="text-gray-800 font-semibold" th:text="${member.password}"></span>
+      </div>
+    </div>
+
+    <!-- 버튼 영역 -->
+    <div class ="mt-10 flex justify-between">
+      <form action="/member/edit" method="get">
+        <button type="submit"
+                class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold rounded-lg border transition">
+          회원정보 수정
+        </button>
+      </form>
+
+      <form action="/logout" method="post">
+        <button type="submit"
+                class="px-6 py-2 bg-red-100 hover:bg-red-200 text-red-600 font-semibold rounded-lg border transition">
+          로그아웃
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- ✅ Footer -->
+<div th:replace="~{fragments/footer :: footer-fragment ('Mypage')}"></div>
+
+</body>
+</html>
