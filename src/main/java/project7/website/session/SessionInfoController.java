@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Date;
 
-@Slf4j
+@Slf4j //ㅂㅈㄷ
 @Controller
 public class SessionInfoController {
     /**
