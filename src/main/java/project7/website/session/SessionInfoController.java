@@ -25,7 +25,7 @@ public class SessionInfoController {
      * @isNew : 새로 생성된 세션인지, 아니면 이미 과거에 만들어졌고, 클라이언트에서 서버로
      * @sessionId ( JSESSIONID )를 요청해서 조회된 세션인지 여부
      */
-    @GetMapping("/session-info")
+    @GetMapping("/session-info") //시벨럼
     public String sessionInfo(HttpServletRequest request , Model model) {
         HttpSession session = request.getSession(false);
         if (session == null) {
