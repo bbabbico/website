@@ -1,0 +1,44 @@
+<!-- templates/fragments/basicmypage.html -->
+<!-- 마이 페이지 사이트들 에서 반복되는 html 컨텐츠 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+
+<!-- basic mypage  -->
+
+<!-- ✅ Sidebar (고정) -->
+<aside th:fragment="basicmypage-fragment" class="fixed top-24 left-0 h-[calc(100vh-6rem)] w-64 bg-white shadow-md border-r p-6 overflow-y-auto">
+  <div class="text-center mb-8">
+    <!-- 프로필 이미지 -->
+    <div class="w-24 h-24 bg-gray-100 rounded-full mx-auto flex items-center justify-center mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-gray-400" fill="none" viewBox="0 0 24 24"
+           stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M4.5 20.25a9.75 9.75 0 0115 0"/>
+      </svg>
+    </div>
+    <h2 class="text-lg font-semibold text-gray-800" th:text="${member.name}">이름</h2>
+    <p class="text-sm text-gray-500" th:text="${member.loginId}">@loginId</p>
+  </div>
+
+  <!-- 메뉴 -->
+  <nav class="space-y-3">
+    <form action="/mypage" method="get">
+      <button type="submit"
+              class="w-full text-left px-4 py-2 rounded-lg font-medium text-emerald-600 bg-emerald-50 hover:bg-emerald-100 transition">
+        회원정보
+      </button>
+    </form>
+
+    <form action="/mypage/saved" method="get">
+      <button type="submit"
+              class="w-full text-left px-4 py-2 rounded-lg font-medium text-gray-600 hover:bg-gray-100 transition">
+        저장한 품목
+      </button>
+    </form>
+  </nav>
+</aside>
+</body>
+</html>
