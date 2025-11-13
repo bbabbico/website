@@ -5,11 +5,46 @@
 <body>
 
 <!-- basic header fragment  -->
-<header th:fragment="basicheader-fragment (title)" class="bg-white shadow-sm fixed w-full z-10">
+<header th:fragment="basicheader-fragment (title , activeTab)" class="bg-white shadow-sm fixed w-full z-10">
   <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
     <!-- 좌측 로고 -->
     <h1 class="text-2xl font-bold text-emerald-600" th:text="|${title} page|"></h1>
 
+    <!-- ✅ 중앙 네비게이션 -->
+    <nav class="hidden md:flex items-center space-x-6 text-gray-700 font-medium" th:if="${activeTab}!='None'">
+
+      <!-- ✅ 각 메뉴에 activeTab 비교 -->
+      <a href="/feed"
+         th:classappend="${activeTab} == 'feed' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
+        피드
+      </a>
+
+      <a href="/ranking"
+         th:classappend="${activeTab} == 'ranking' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
+        랭킹
+      </a>
+
+      <a href="/challenge"
+         th:classappend="${activeTab} == 'challenge' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
+        챌린지
+      </a>
+
+      <a href="/mentoring"
+         th:classappend="${activeTab} == 'mentoring' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
+        멘토링
+      </a>
+
+      <a href="/community"
+         th:classappend="${activeTab} == 'community' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
+        커뮤니티
+      </a>
+
+      <a href="/blog"
+         th:classappend="${activeTab} == 'blog' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
+        블로그
+      </a>
+
+    </nav>
     <!-- 우측 메뉴 -->
     <div class="flex items-center space-x-4">
 
