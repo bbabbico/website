@@ -6,80 +6,91 @@
   <title>마이페이지 | Inflearn 스타일</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex flex-col">
 
 <!-- ✅ Header -->
-<header class="bg-white shadow-sm fixed w-full z-10">
-  <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-    <!-- 로고 -->
-    <h1 class="text-2xl font-bold text-emerald-600 cursor-pointer" th:onclick="'location.href=\'/\' '">
-      Inflearn Clone
-    </h1>
+<div th:replace="~{fragments/basicheader :: basicheader-fragment ('Mypage')}"></div>
 
-    <!-- 우측: 환영문구 + 로그아웃 -->
-    <div class="flex items-center space-x-4" th:if="${member}">
-                <span class="text-gray-700 font-medium">
-                    환영합니다, <span class="text-emerald-600 font-semibold" th:text="${member.name}"></span> 님 👋
-                </span>
-      <form action="/logout" method="post">
-        <button type="submit"
-                class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition">
-          로그아웃
-        </button>
-      </form>
-    </div>
-  </div>
-</header>
+<!-- ✅ Layout -->
+<div class="flex flex-grow pt-24">
 
-<!-- ✅ Main Section -->
-<main class="flex-grow flex items-center justify-center mt-28">
-  <div class="bg-white shadow-lg rounded-2xl p-10 w-full max-w-lg">
-    <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">마이페이지</h2>
-
-    <!-- 회원 정보 카드 -->
-    <div class="space-y-6">
-      <div class="flex justify-between items-center border-b pb-3">
-        <span class="text-gray-500 font-medium">이름</span>
-        <span class="text-gray-800 font-semibold" th:text="${member.name}"></span>
+  <!-- ✅ Sidebar (고정) -->
+  <aside class="fixed top-24 left-0 h-[calc(100vh-6rem)] w-64 bg-white shadow-md border-r p-6 overflow-y-auto">
+    <div class="text-center mb-8">
+      <!-- 프로필 이미지 -->
+      <div class="w-24 h-24 bg-gray-100 rounded-full mx-auto flex items-center justify-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-gray-400" fill="none" viewBox="0 0 24 24"
+             stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M4.5 20.25a9.75 9.75 0 0115 0"/>
+        </svg>
       </div>
-
-      <div class="flex justify-between items-center border-b pb-3">
-        <span class="text-gray-500 font-medium">아이디</span>
-        <span class="text-gray-800 font-semibold" th:text="${member.loginId}"></span>
-      </div>
-
-      <div class="flex justify-between items-center border-b pb-3">
-        <span class="text-gray-500 font-medium">이메일</span>
-        <span class="text-gray-800 font-semibold" th:text="${member.email}"></span>
-      </div>
-
-      <div class="flex justify-between items-center border-b pb-3">
-        <span class="text-gray-500 font-medium">비밀번호</span>
-        <span class="text-gray-800 font-semibold" th:text="${member.password}"></span>
-      </div>
+      <h2 class="text-lg font-semibold text-gray-800" th:text="${member.name}">이름</h2>
+      <p class="text-sm text-gray-500" th:text="${member.loginId}">@loginId</p>
     </div>
 
-    <!-- 버튼 영역 -->
-    <div class ="mt-10 flex justify-between">
-      <form action="/member/edit" method="get">
+    <!-- 메뉴 -->
+    <nav class="space-y-3">
+      <form action="/mypage" method="get">
         <button type="submit"
-                class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold rounded-lg border transition">
-          회원정보 수정
+                class="w-full text-left px-4 py-2 rounded-lg font-medium text-emerald-600 bg-emerald-50 hover:bg-emerald-100 transition">
+          회원정보
         </button>
       </form>
 
-      <form action="/logout" method="post">
+      <form action="/mypage/saved" method="get">
         <button type="submit"
-                class="px-6 py-2 bg-red-100 hover:bg-red-200 text-red-600 font-semibold rounded-lg border transition">
-          로그아웃
+                class="w-full text-left px-4 py-2 rounded-lg font-medium text-gray-600 hover:bg-gray-100 transition">
+          저장한 품목
         </button>
       </form>
-    </div>
-  </div>
-</main>
+    </nav>
+  </aside>
+
+  <!-- ✅ Content Area -->
+  <main class="flex-1 ml-64 px-10 py-8">
+    <section class="bg-white shadow rounded-2xl p-8 min-h-[70vh]">
+      <h3 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">회원정보</h3>
+
+      <div class="space-y-6">
+        <div class="flex justify-between items-center border-b pb-3">
+          <span class="text-gray-500 font-medium">이름</span>
+          <span class="text-gray-800 font-semibold" th:text="${member.name}"></span>
+        </div>
+
+        <div class="flex justify-between items-center border-b pb-3">
+          <span class="text-gray-500 font-medium">아이디</span>
+          <span class="text-gray-800 font-semibold" th:text="${member.loginId}"></span>
+        </div>
+
+        <div class="flex justify-between items-center border-b pb-3">
+          <span class="text-gray-500 font-medium">이메일</span>
+          <span class="text-gray-800 font-semibold" th:text="${member.email}"></span>
+        </div>
+
+        <div class="flex justify-between items-center border-b pb-3">
+          <span class="text-gray-500 font-medium">비밀번호</span>
+          <span class="text-gray-800 font-semibold">********</span>
+        </div>
+      </div>
+
+      <div class="mt-10 flex justify-end">
+        <form action="/member/edit" method="get">
+          <button type="submit"
+                  class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold rounded-lg border transition">
+            회원정보 수정
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
 
 <!-- ✅ Footer -->
-<div th:replace="~{fragments/footer :: footer-fragment ('Mypage')}"></div>
+<div th:replace="~{fragments/footer :: footer-fragment('Mypage')}"></div>
 
 </body>
 </html>

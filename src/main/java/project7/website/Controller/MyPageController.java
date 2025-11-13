@@ -21,4 +21,15 @@ public class MyPageController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("mypage/saved")
+    public String saved(HttpServletRequest request , Model model) {
+        HttpSession session = request.getSession(false);
+        if(session.getId() != null){
+            model.addAttribute("member",session.getAttribute(SessionConst.LOGIN_MEMBER));
+            return "mypage/saved";
+        }
+        return "redirect:/";
+    }
+
 }

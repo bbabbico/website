@@ -97,7 +97,6 @@ public class LoginController {
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
         //필수로 로그인이 필요한 사이트에서 redirectURL 로 갈때 member 줘야함.
-//        model.addAttribute("member", loginService.findByLoginId(loginMember.getLoginId()));
 
         return "redirect:"+redirectURL;
     }
