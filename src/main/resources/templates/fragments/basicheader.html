@@ -14,9 +14,9 @@
     <nav class="hidden md:flex items-center space-x-6 text-gray-700 font-medium" th:if="${activeTab}!='None'">
 
       <!-- ✅ 각 메뉴에 activeTab 비교 -->
-      <a href="/feed"
-         th:classappend="${activeTab} == 'feed' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
-        피드
+      <a href="/news"
+         th:classappend="${activeTab} == 'news' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
+        주요뉴스
       </a>
 
       <a href="/ranking"

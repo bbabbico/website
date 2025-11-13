@@ -1,4 +1,4 @@
-package project7.website.Controller;
+package project7.website.Controller.index;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,11 +9,11 @@ import project7.website.Database.member.MemberRepositoryT;
 import project7.website.session.SessionConst;
 
 @Controller
-public class HomeController {
+public class indexController {
 
     private final MemberRepositoryT memberRepositoryT;
 
-    public HomeController(MemberRepositoryT memberRepositoryT) {
+    public indexController(MemberRepositoryT memberRepositoryT) {
         this.memberRepositoryT = memberRepositoryT;
     }
 
@@ -43,5 +43,7 @@ public class HomeController {
         model.addAttribute("member", loginMember);
         return "index";
     }
+
+
 
 }
