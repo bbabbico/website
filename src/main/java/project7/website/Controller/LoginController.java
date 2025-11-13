@@ -54,8 +54,15 @@ public class LoginController {
      * @return login Thymeleaf 페이지
      */
     @GetMapping("/login")
-    public String login(@ModelAttribute("loginForm") LoginForm form){
-        return "login/login";
+    public String login(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember ,@ModelAttribute("loginForm") LoginForm form){
+        //세션에 회원 데이터가 없으면 페이지 이동
+        if (loginMember == null) {
+            return  "login/login";
+        }
+
+        //로그인 세션 존재하면 index 리다이렉트
+        return  "redirect:/";
+
     }
 
     /**
@@ -64,8 +71,15 @@ public class LoginController {
      * @return signup Thymeleaf 페이지
      */
     @GetMapping("/signup")
-    public String signup(@ModelAttribute("member") Member member){
-        return "login/signup";
+    public String signup(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember ,@ModelAttribute("member") Member member){
+        //세션에 회원 데이터가 없으면 페이지 이동
+        if (loginMember == null) {
+            return "login/signup";
+        }
+
+        //로그인 세션 존재하면 index 리다이렉트
+        return  "redirect:/";
+
     }
 
     /**

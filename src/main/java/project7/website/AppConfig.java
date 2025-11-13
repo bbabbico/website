@@ -49,5 +49,4 @@ public class AppConfig implements WebMvcConfigurer {
 
         return filterRegistrationBean;
     }
-
 }
