@@ -55,7 +55,7 @@ public class LoginController {
      */
     @GetMapping("/login")
     public String login(@ModelAttribute("loginForm") LoginForm form){
-        return "login";
+        return "login/login";
     }
 
     /**
@@ -65,7 +65,7 @@ public class LoginController {
      */
     @GetMapping("/signup")
     public String signup(@ModelAttribute("member") Member member){
-        return "signup";
+        return "login/signup";
     }
 
     /**
@@ -77,13 +77,13 @@ public class LoginController {
      */
     @PostMapping("/login")
     public String login(@Validated @ModelAttribute LoginForm form, BindingResult bindingResult, @RequestParam(defaultValue = "/") String redirectURL , HttpServletRequest request, Model model) {
-        if (bindingResult.hasErrors()) {return "login";}
+        if (bindingResult.hasErrors()) {return "login/login";}
 
         Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
 
         if (loginMember == null) {
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "login";
+            return "login/login";
         }
 
         //로그인 성공 처리
@@ -110,10 +110,10 @@ public class LoginController {
      */
     @PostMapping("/signup")
     public String signup(@Validated @ModelAttribute Member member, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {return "signup";}
+        if (bindingResult.hasErrors()) {return "login/signup";}
 
         loginService.join(member);
-        return "redirect:/login";
+        return "redirect:/login"; //리다이렉트는 컨트롤러 매핑 값으로 이동함
 
 //        if ( == null) {
 //            bindingResult.reject("loginFail", "이미 존재하는 회원입니다.");

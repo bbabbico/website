@@ -17,7 +17,7 @@ public class MyPageController {
         HttpSession session = request.getSession(false);
         if(session.getId() != null){
             model.addAttribute("member",session.getAttribute(SessionConst.LOGIN_MEMBER));
-            return "mypage";
+            return "mypage/mypage";
         }
         return "redirect:/";
     }
