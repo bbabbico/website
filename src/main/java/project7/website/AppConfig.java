@@ -10,6 +10,7 @@ import project7.website.Database.member.MemberRepositoryT;
 import project7.website.login.LoginCheckFilter;
 import project7.website.login.LoginService;
 import project7.website.login.LoginServiceImpl;
+import project7.website.login.URLFilter;
 
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
@@ -36,6 +37,16 @@ public class AppConfig implements WebMvcConfigurer {
         return new LoginServiceImpl(memberRepository());
     }
 
+    @Bean
+    public FilterRegistrationBean URLFilter() {
+        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new URLFilter());
+        filterRegistrationBean.setOrder(1);
+        filterRegistrationBean.addUrlPatterns("/*");
+
+        return filterRegistrationBean;
+    }
+
     /**
      * 로그인 확인 필터
      *
@@ -44,7 +55,7 @@ public class AppConfig implements WebMvcConfigurer {
     public FilterRegistrationBean loginCheckFilter() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new LoginCheckFilter());
-        filterRegistrationBean.setOrder(1);
+        filterRegistrationBean.setOrder(2);
         filterRegistrationBean.addUrlPatterns("/*");
 
         return filterRegistrationBean;

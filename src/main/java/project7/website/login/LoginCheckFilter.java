@@ -19,11 +19,11 @@ public class LoginCheckFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        String requestURI = httpRequest.getRequestURI();
+        String requestURI = httpRequest.getAttribute("url").toString();
 
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        try { //세션 정보 확인처럼 구지 리다이렉트 안해도되는것들은 대체사이트로 이동하는 기능 구현 필요
+        try { //세션 정보 확인처럼 post만 있는 주소에 리다이렉트 주소가 get 인경우 대체사이트로 이동하는 기능 구현 필요
             if (isLoginCheckPath(requestURI)) {
                 HttpSession session = httpRequest.getSession(false);
                 if (session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null) {
