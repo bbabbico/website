@@ -1,9 +1,11 @@
 package project7.website.Database.Repository;
 
-import lombok.Data;
+import lombok.Getter;
 
 import java.util.Objects;
 
+//record
+@Getter
 public final class RankingItemDTO {
     private final String img;
     private final String name;
@@ -15,22 +17,6 @@ public final class RankingItemDTO {
         this.name = name;
         this.brand = brand;
         this.price = price;
-    }
-
-    public String img() {
-        return img;
-    }
-
-    public String name() {
-        return name;
-    }
-
-    public String brand() {
-        return brand;
-    }
-
-    public String price() {
-        return price;
     }
 
     @Override
