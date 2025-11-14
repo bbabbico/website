@@ -4,65 +4,66 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <body>
 
-<!-- 1st-fragment -->
-<div th:fragment="1st-fragment" class="bg-white border border-emerald-200 rounded-xl shadow-md hover:shadow-lg transition p-4 w-full max-w-xs mx-auto">
+<!-- Rank-fragment -->
+<!-- 1등 -->
+<div th:fragment="Rank-fragment">
+  <div class="bg-white border border-emerald-200 rounded-xl shadow-md hover:shadow-lg transition p-4 w-full max-w-xs mx-auto">
 
-  <!-- 상품 이미지 -->
-  <a class="w-full h-52 bg-gray-100 rounded-lg flex items-center justify-center mb-4" style="display: block;" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1">
-    <img th:src="${Items[0].img}" alt="대표이미지">
-  </a>
+    <!-- 상품 이미지 -->
+    <a class="w-full h-52 bg-gray-100 rounded-lg flex items-center justify-center mb-4" style="display: block;" th:href="${Items[0].url}">
+      <img th:src="${Items[0].img}" alt="대표이미지">
+    </a>
 
-  <!-- 상품 정보 -->
-  <div class="space-y-1 text-center">
-    <div class="text-emerald-600 text-sm font-bold" >1등</div>
-    <div class="text-gray-800 font-semibold text-base truncate" th:text="${Items[0].name}">상품명</div>
-    <div class="text-gray-500 text-sm" th:text="${Items[0].brand}">브랜드</div>
-    <div class="text-emerald-700 font-bold text-lg mt-2" th:text="|${Items[0].price}원|">가격</div>
-  </div>
-
-  <!-- 버튼 영역 -->
-  <div class="mt-4 flex justify-center space-x-2">
-    <button class="px-4 py-2 bg-emerald-500 text-white text-sm font-semibold rounded-md hover:bg-emerald-600 transition">
-      장바구니
-    </button>
-    <button class="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition">
-      ❤️
-    </button>
-  </div>
-</div>
-
-
-<!-- otherRank-fragment -->
-<div th:fragment="otherRank-fragment" th:each="item , start: ${Items}" th:if="${start.index}!=0"
-     class="bg-white border rounded-xl shadow-sm hover:shadow-md transition p-3 w-full max-w-xs mx-auto my-6 h-[380px]">
-
-  <!-- 상품 이미지 (원래 처음 보내준 크기: w-full h-52) -->
-  <a class="w-full h-52 bg-gray-100 rounded-lg overflow-hidden block mb-3" href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1">
-    <img th:src="${item.img}"
-         alt="대표 이미지"
-         class="w-full h-full object-cover">
-  </a>
-
-  <!-- 상품 정보 -->
-  <div class="text-center space-y-1">
-
-    <!-- 등수 -->
-    <div class="text-emerald-600 text-sm font-bold" th:text="|${start.count}등|"></div>
-
-    <!-- 상품명 (50자 초과 시만 축약) -->
-    <div class="text-gray-800 font-medium text-sm overflow-hidden text-ellipsis"
-         style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"
-         th:text="${#strings.length(item.name) > 50} ? ${#strings.substring(item.name, 0, 50)} + '…' : ${item.name}">
+    <!-- 상품 정보 -->
+    <div class="space-y-1 text-center">
+      <div class="text-emerald-600 text-sm font-bold" >1등</div>
+      <div class="text-gray-800 font-semibold text-base truncate" th:text="${Items[0].name}">상품명</div>
+      <div class="text-gray-500 text-sm" th:text="${Items[0].brand}">브랜드</div>
+      <div class="text-emerald-700 font-bold text-lg mt-2" th:text="|${Items[0].price}원|">가격</div>
     </div>
 
-    <!-- 브랜드 -->
-    <div class="text-gray-500 text-xs" th:text="${item.brand}">브랜드</div>
+    <!-- 버튼 영역 -->
+    <div class="mt-4 flex justify-center space-x-2">
+      <button class="px-4 py-2 bg-emerald-500 text-white text-sm font-semibold rounded-md hover:bg-emerald-600 transition">
+        장바구니
+      </button>
+      <button class="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition">
+        ❤️
+      </button>
+    </div>
+  </div>
 
-    <!-- 가격 -->
-    <div class="text-emerald-700 font-semibold text-base mt-1"
-         th:text="|${item.price}원|">가격</div>
+  <!-- 1등 외 순위 -->
+  <div th:each="item , start: ${Items}" th:if="${start.index}!=0"
+       class="bg-white border rounded-xl shadow-sm hover:shadow-md transition p-3 w-full max-w-xs mx-auto my-6 h-[380px]">
+
+    <!-- 상품 이미지 (원래 처음 보내준 크기: w-full h-52) -->
+    <a class="w-full h-52 bg-gray-100 rounded-lg overflow-hidden block mb-3" th:href="${item.url}">
+      <img th:src="${item.img}"
+           alt="대표 이미지"
+           class="w-full h-full object-cover">
+    </a>
+
+    <!-- 상품 정보 -->
+    <div class="text-center space-y-1">
+
+      <!-- 등수 -->
+      <div class="text-emerald-600 text-sm font-bold" th:text="|${start.count}등|"></div>
+
+      <!-- 상품명 (50자 초과 시만 축약) -->
+      <div class="text-gray-800 font-medium text-sm overflow-hidden text-ellipsis"
+           style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"
+           th:text="${#strings.length(item.name) > 50} ? ${#strings.substring(item.name, 0, 50)} + '…' : ${item.name}">
+      </div>
+
+      <!-- 브랜드 -->
+      <div class="text-gray-500 text-xs" th:text="${item.brand}">브랜드</div>
+
+      <!-- 가격 -->
+      <div class="text-emerald-700 font-semibold text-base mt-1"
+           th:text="|${item.price}원|">가격</div>
+    </div>
   </div>
 </div>
-
 </body>
 </html>
