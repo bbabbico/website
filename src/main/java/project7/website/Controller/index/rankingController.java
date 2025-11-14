@@ -19,6 +19,8 @@ public class rankingController {
         //로그인 세션 존재하면 view 전달
         model.addAttribute("member", loginMember);
         return  "mainmenu/ranking";
-
     }
+
+
+
 }
