@@ -7,8 +7,8 @@ public class RankingItemRepository {
 
     private final LinkedList<RankingItemDTO> rankingItemDTOList = new LinkedList<>();
 
-    public void addRankingItemDTOList(String img, String url, String name, String brand, String price) {
-        rankingItemDTOList.add(new RankingItemDTO(img,url ,name, brand, price));
+    public void addRankingItemDTOList(RankingItemDTO rankingItemDTO) {
+        rankingItemDTOList.add(rankingItemDTO);
     }
     public List<RankingItemDTO> getList() {
         return rankingItemDTOList;

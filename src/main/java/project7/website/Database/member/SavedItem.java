@@ -1,14 +1,20 @@
 package project7.website.Database.member;
 
+import lombok.Getter;
 import project7.website.Database.Repository.RankingItemDTO;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-public final class WatchList {
+public class SavedItem {
     private final Long id;
     private final RankingItemDTO rankingItemDTO;
 
-    public WatchList(Long id, RankingItemDTO rankingItemDTO) {
+    @Getter
+    private final Map<String, RankingItemDTO> saveditemMap = new HashMap<>();
+
+    public SavedItem(Long id, RankingItemDTO rankingItemDTO) {
         this.id = id;
         this.rankingItemDTO = rankingItemDTO;
     }
@@ -17,7 +23,7 @@ public final class WatchList {
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (WatchList) obj;
+        var that = (SavedItem) obj;
         return Objects.equals(this.id, that.id) &&
                 Objects.equals(this.rankingItemDTO, that.rankingItemDTO);
     }

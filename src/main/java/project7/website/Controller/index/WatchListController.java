@@ -7,6 +7,9 @@ import project7.website.Database.Repository.RankingItemDTO;
 
 @RestController
 public class WatchListController {
+    //랭킹 사이트 API
+    //장바구니 사이트 API
+
 
     @PostMapping("/ranking/wl")
     public String addWatchList(@RequestBody RankingItemDTO rankingItemDTO) {
