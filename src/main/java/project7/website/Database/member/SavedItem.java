@@ -2,11 +2,17 @@ package project7.website.Database.member;
 
 import lombok.Getter;
 import project7.website.Database.Repository.RankingItemDTO;
+import project7.website.Database.Repository.SavedItemRepository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * 상품 저장목록 객체
+ * <p>
+ * 구현체 : {@link SavedItemRepository}
+ */
 public class SavedItem {
     private final Long id;
     private final RankingItemDTO rankingItemDTO;
