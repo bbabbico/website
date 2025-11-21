@@ -8,4 +8,4 @@ Thymeleaf
 tailwindcss
 </pre>
 
-API 는 만들었으나 타임리프에서 API 받는거 만들어야됨
+API 는 만들었으나 타임리프에서 API 받는거 만들어야됨 자바스크립트로 구현
