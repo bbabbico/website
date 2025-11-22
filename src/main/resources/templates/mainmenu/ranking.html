@@ -7,24 +7,30 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <script>
-  function qwe(rankIndex) {
+  function qwe() {
     fetch("/ranking", {method: "POST"})
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
-              const list = data.list; // Array(5)
-              const container = document.getElementById(`rank${rankIndex}-items`);
+              console.log(data)
+              renderRankingList(data.oliveyoung.list, 1);   // 올리브영
+              renderRankingList(data.qoo10.list, 2);   // 큐텐
+              renderRankingList(data.coupang.list, 3); // 쿠팡
+              renderRankingList(data.amazon.list, 4);  // 아마존
 
-              container.innerHTML = ""; // 초기화
-
-              list.forEach((item, index) => {
-                if (index === 0) {
-                  container.innerHTML += renderFirstItem(item);
-                } else {
-                  container.innerHTML += renderOtherItem(item, index);
-                }
-              });
-            });
+            })
+            .catch(err => console.error("API Error:", err));
   }
+
+  function renderRankingList(list, type) {
+    const container = document.getElementById(`rank${type}-items`);
+    container.innerHTML = "";
+
+    list.forEach((item, index) => {
+      if (index === 0) container.innerHTML += renderFirstItem(item);
+      else container.innerHTML += renderOtherItem(item, index);
+    });
+  }
+
   function renderFirstItem(item) {
     return `
     <div class="bg-white border border-emerald-200 rounded-xl shadow-md hover:shadow-lg transition p-4 w-full max-w-xs mx-auto">
@@ -62,10 +68,7 @@
   `;
   }
   window.onload = function() {
-    qwe(1);
-    qwe(2);
-    qwe(3);
-    qwe(4);
+    qwe();
   };
 </script>
 <body class="bg-gray-50 min-h-screen flex flex-col">
