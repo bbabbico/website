@@ -6,11 +6,18 @@
   <title>Ranking</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<script>
+  function qwe() {
+    fetch("/ranking", {method: "POST",})
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+  }
+</script>
 <body class="bg-gray-50 min-h-screen flex flex-col">
 
 <!-- ✅ Header -->
 <div th:replace="~{fragments/basicheader :: basicheader-fragment('Ranking', 'ranking')}"></div>
-
+<button onclick="qwe()">API</button>
 <!-- ✅ Main Section -->
 <main class="flex-grow pt-28 pb-16 px-6">
   <div class="max-w-7xl mx-auto">
@@ -23,28 +30,28 @@
         <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">올리브영 랭킹</h2>
 
 
-        <div th:replace="~{fragments/rankingcomponent :: Rank-fragment}"></div>
+<!--        <div th:replace="~{fragments/rankingcomponent :: Rank-fragment}"></div>-->
       </section>
 
       <!-- 🟢 큐텐 랭킹 -->
       <section class="bg-white shadow-md rounded-2xl p-6">
         <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">큐텐 랭킹</h2>
 
-        <div th:replace="~{fragments/rankingcomponent :: Rank-fragment}"></div>
+<!--        <div th:replace="~{fragments/rankingcomponent :: Rank-fragment}"></div>-->
       </section>
 
       <!-- 🟢 쿠팡 랭킹 -->
       <section class="bg-white shadow-md rounded-2xl p-6">
         <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">쿠팡 랭킹</h2>
 
-        <div th:replace="~{fragments/rankingcomponent :: Rank-fragment}"></div>
+<!--        <div th:replace="~{fragments/rankingcomponent :: Rank-fragment}"></div>-->
       </section>
 
       <!-- 🟢 아마존 랭킹 -->
       <section class="bg-white shadow-md rounded-2xl p-6">
         <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">아마존 랭킹</h2>
 
-        <div th:replace="~{fragments/rankingcomponent :: Rank-fragment}"></div>
+<!--        <div th:replace="~{fragments/rankingcomponent :: Rank-fragment}"></div>-->
       </section>
 
     </div>
