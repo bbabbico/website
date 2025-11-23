@@ -1,146 +1,51 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranking</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        function qwe() {
-            fetch("/ranking", {method: "POST",})
-                .then((response) => response.json())
-                .then((data) => console.log(data))
-        }
-    </script>
-</head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
+<!-- ✅ Content -->
+<main class="flex-1 ml-64 px-10 py-8">
+    <section class="bg-white shadow rounded-2xl p-8 min-h-[70vh]">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">저장한 품목</h3>
 
-<!-- ✅ Header -->
-<div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-    <!-- 좌측 로고 -->
-    <a href="/"><h1 class="text-2xl font-bold text-emerald-600" th:text="|${title} page|"></h1></a>
-
-    <!-- ✅ 중앙 네비게이션 -->
-    <nav class="hidden md:flex items-center space-x-6 text-gray-700 font-medium" th:if="${activeTab}!='None'">
-
-        <!-- ✅ 각 메뉴에 activeTab 비교 -->
-        <a href="/news"
-           th:classappend="${activeTab} == 'news' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
-            주요뉴스
-        </a>
-
-        <a href="/ranking"
-           th:classappend="${activeTab} == 'ranking' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
-            랭킹
-        </a>
-
-    </nav>
-    <!-- 우측 메뉴 -->
-    <div class="flex items-center space-x-4">
-        <!-- ✅ 비로그인 상태: 로그인 / 회원가입 -->
-        <div class="flex items-center space-x-3">
-            <form action="/login" method="get">
-                <button type="submit"
-                        class="px-4 py-2 text-gray-700 font-medium hover:text-emerald-600 transition">
-                    로그인
-                </button>
-            </form>
-
-            <form action="/signup" method="get">
-                <button type="submit"
-                        class="px-4 py-2 text-gray-700 font-medium hover:text-emerald-600 transition">
-                    회원가입
-                </button>
-            </form>
+        <!-- 저장된 품목이 없는 경우 -->
+        <div class="text-center text-gray-500 mt-10" th:if="${#lists.isEmpty(savedList)}">
+            <p>아직 저장된 품목이 없습니다.</p>
         </div>
 
-    </div>
-</div>
-<button onclick="qwe()">API</button>
-<!-- ✅ Main Section -->
-<main class="flex-grow pt-28 pb-16 px-6">
-    <div class="max-w-7xl mx-auto">
+        <!-- 저장된 품목이 있는 경우 -->
+        <div th:unless="${#lists.isEmpty(savedList)}"
+             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
 
-        <!-- ✅ 랭킹 그리드 -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div th:each="saved : ${savedList}"
+                 class="bg-white border border-emerald-200 rounded-xl shadow-md hover:shadow-lg transition p-4 w-full max-w-xs mx-auto">
 
-            <!-- 🟢 올리브영 랭킹 -->
-            <section class="bg-white shadow-md rounded-2xl p-6">
-                <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">올리브영 랭킹</h2>
-
-
-                <!-- 1등 -->
-                <div th:fragment="Rank-fragment">
-                    <div class="bg-white border border-emerald-200 rounded-xl shadow-md hover:shadow-lg transition p-4 w-full max-w-xs mx-auto">
-
-                        <!-- 상품 이미지 -->
-                        <a class="w-full h-52 bg-gray-100 rounded-lg flex items-center justify-center mb-4" style="display: block;" th:href="${Items[0].url}">
-                            <img th:src="${Items[0].img}" alt="대표이미지">
-                        </a>
-
-                        <!-- 상품 정보 -->
-                        <div class="space-y-1 text-center">
-                            <div class="text-emerald-600 text-sm font-bold" >1등</div>
-                            <div class="text-gray-800 font-semibold text-base truncate" th:text="${Items[0].name}">상품명</div>
-                            <div class="text-gray-500 text-sm" th:text="${Items[0].brand}">브랜드</div>
-                            <div class="text-emerald-700 font-bold text-lg mt-2" th:text="|${Items[0].price}원|">가격</div>
-                        </div>
-
-                        <!-- 버튼 영역 -->
-                        <div class="mt-4 flex justify-center space-x-2">
-                            <button class="px-4 py-2 bg-emerald-500 text-white text-sm font-semibold rounded-md hover:bg-emerald-600 transition">
-                                장바구니
-                            </button>
-                            <button class="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition">
-                                ❤️
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 1등 외 순위 -->
-                    <div th:each="item , start: ${Items}" th:if="${start.index}!=0"
-                         class="bg-white border rounded-xl shadow-sm hover:shadow-md transition p-3 w-full max-w-xs mx-auto my-6 h-[380px]">
-
-                        <!-- 상품 이미지 (원래 처음 보내준 크기: w-full h-52) -->
-                        <a class="w-full h-52 bg-gray-100 rounded-lg overflow-hidden block mb-3" th:href="${item.url}">
-                            <img th:src="${item.img}"
-                                 alt="대표 이미지"
-                                 class="w-full h-full object-cover">
-                        </a>
-
-                        <!-- 상품 정보 -->
-                        <div class="text-center space-y-1">
-
-                            <!-- 등수 -->
-                            <div class="text-emerald-600 text-sm font-bold" th:text="|${start.count}등|"></div>
-
-                            <!-- 상품명 (50자 초과 시만 축약) -->
-                            <div class="text-gray-800 font-medium text-sm overflow-hidden text-ellipsis"
-                                 style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"
-                                 th:text="${#strings.length(item.name) > 50} ? ${#strings.substring(item.name, 0, 50)} + '…' : ${item.name}">
-                            </div>
-
-                            <!-- 브랜드 -->
-                            <div class="text-gray-500 text-xs" th:text="${item.brand}">브랜드</div>
-
-                            <!-- 가격 -->
-                            <div class="text-emerald-700 font-semibold text-base mt-1"
-                                 th:text="|${item.price}원|">가격</div>
-                        </div>
-                    </div>
+                <!-- 플랫폼 배지 -->
+                <div class="text-xs font-bold px-3 py-1 rounded-full inline-block mb-2"
+                     th:classappend="
+                        ${saved.rankingItemDTO.platform == 1} ? 'bg-emerald-100 text-emerald-700' :
+                        ${saved.rankingItemDTO.platform == 2} ? 'bg-blue-100 text-blue-700' :
+                        ${saved.rankingItemDTO.platform == 3} ? 'bg-yellow-100 text-yellow-700' :
+                        'bg-gray-100 text-gray-600'
+                     "
+                     th:text="'플랫폼 ' + ${saved.rankingItemDTO.platform}">
                 </div>
-            </section>
 
+                <!-- 이미지 -->
+                <a th:href="${saved.rankingItemDTO.url}"
+                   class="w-full h-52 bg-gray-100 rounded-lg flex items-center justify-center mb-4 block">
+                    <img th:src="${saved.rankingItemDTO.img}"
+                         alt="대표이미지"
+                         class="w-full h-full object-cover">
+                </a>
+
+                <!-- 이름 -->
+                <div class="space-y-1 text-center">
+                    <div class="text-gray-800 font-semibold text-base truncate"
+                         th:text="${saved.rankingItemDTO.name}"></div>
+
+                    <div class="text-gray-500 text-sm"
+                         th:text="${saved.rankingItemDTO.brand}"></div>
+
+                    <div class="text-emerald-700 font-bold text-lg mt-2"
+                         th:text="${saved.rankingItemDTO.price + '원'}"></div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 </main>
-
-<!-- ✅ Footer -->
-<footer class="bg-white border-t mt-10">
-    <div class="max-w-6xl mx-auto py-6 text-center text-gray-500 text-sm">
-        <p th:text="|Template Made with using TailwindCSS|"></p>
-    </div>
-</footer>
-
-</body>
-</html>

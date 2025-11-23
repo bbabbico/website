@@ -22,8 +22,49 @@
         <section class="bg-white shadow rounded-2xl p-8 min-h-[70vh]">
             <h3 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">저장한 품목</h3>
 
-            <div class="text-center text-gray-500 mt-10">
+            <!-- 저장된 품목이 없을 때 -->
+            <div class="text-center text-gray-500 mt-10" th:if="${savedList.size()} == 0">
                 <p>아직 저장된 품목이 없습니다.</p>
+            </div>
+
+            <!-- 저장된 품목 목록 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto" th:if="${savedList.size()} > 0">
+
+                <!-- SavedItem 반복 출력 -->
+                <div th:each="saved : ${savedList}"
+                     class="bg-white border border-emerald-200 rounded-xl shadow-md hover:shadow-lg transition p-4 w-full max-w-xs mx-auto relative">
+
+                    <!-- 플랫폼 배지 -->
+                    <div class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                        <span th:switch="${saved.rankingItemDTO.platform}">
+                            <span th:case="1">올리브영</span>
+                            <span th:case="2">큐텐</span>
+                            <span th:case="3">쿠팡</span>
+                            <span th:case="4">아마존</span>
+                            <span th:case="*">Unknown</span>
+                        </span>
+                    </div>
+
+                    <!-- 상품 이미지 -->
+                    <a th:href="${saved.rankingItemDTO.url}"
+                       class="w-full h-52 bg-gray-100 rounded-lg flex items-center justify-center mb-4 block overflow-hidden">
+                        <img th:src="${saved.rankingItemDTO.img}" class="w-full h-full object-cover" alt="상품 대표 이미지"/>
+                    </a>
+
+                    <!-- 상품 정보 -->
+                    <div class="space-y-1 text-center">
+                        <div class="text-gray-800 font-semibold text-base truncate"
+                             th:text="${saved.rankingItemDTO.name}"></div>
+
+                        <div class="text-gray-500 text-sm"
+                             th:text="${saved.rankingItemDTO.brand}"></div>
+
+                        <div class="text-emerald-700 font-bold text-lg mt-2"
+                             th:text="|${saved.rankingItemDTO.price}원|"></div>
+                    </div>
+
+                </div>
+
             </div>
         </section>
     </main>

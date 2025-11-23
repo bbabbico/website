@@ -14,7 +14,9 @@ import java.util.Objects;
  * 구현체 : {@link SavedItemRepository}
  */
 public class SavedItem {
+    @Getter //타임리프 조회용
     private final Long id;
+    @Getter //타임리프 조회용
     private final RankingItemDTO rankingItemDTO;
 
     @Getter

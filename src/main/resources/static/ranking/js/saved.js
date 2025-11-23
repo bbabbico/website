@@ -1,5 +1,6 @@
-function saved(type,rank,img,url,name,brand,price){
+function saved(platform,rank,img,url,name,brand,price){
     const item ={ //상품 정보 obj
+        "platform" :platform,
         "img" :img,
         "url" :url,
         "name" :name,
@@ -17,5 +18,5 @@ function saved(type,rank,img,url,name,brand,price){
         .then((res)=>res.json())
         .then((data)=>console.log(data))
 
-    document.getElementById(`saved_button_${type}_${rank}`).innerText = "❤"
+    document.getElementById(`saved_button_${platform}_${rank}`).innerText = "❤"
 }

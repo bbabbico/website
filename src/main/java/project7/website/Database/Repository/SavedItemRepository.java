@@ -1,6 +1,5 @@
 package project7.website.Database.Repository;
 
-import org.springframework.stereotype.Repository;
 import project7.website.Database.member.SavedItem;
 import java.util.ArrayList;
 

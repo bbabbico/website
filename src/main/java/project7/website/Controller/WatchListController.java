@@ -1,7 +1,8 @@
-package project7.website.Controller.index;
+package project7.website.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +12,7 @@ import project7.website.Database.member.Member;
 import project7.website.Database.member.SavedItem;
 import project7.website.session.SessionConst;
 
+@Slf4j
 @RestController
 public class WatchListController {
     //랭킹 사이트 API
@@ -26,6 +28,7 @@ public class WatchListController {
         } else {
             Member member = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER); //회원 고유 식별 ID 조회
             SavedItem Item = new SavedItem(member.getId(), rankingItemDTO);
+            log.info("good"); //DB 구현 필요
         }
 
         return result;

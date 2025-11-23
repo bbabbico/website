@@ -1,4 +1,4 @@
-package project7.website.Controller.index;
+package project7.website.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
