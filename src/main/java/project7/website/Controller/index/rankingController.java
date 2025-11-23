@@ -18,12 +18,12 @@ public class rankingController {
 
         //세션에 회원 데이터가 없으면 빈 Model 전달
         if (loginMember == null) {
-            return  "mainmenu/ranking/ranking";
+            return  "mainmenu/ranking";
         }
 
         //로그인 세션 존재하면 view 전달
         model.addAttribute("member", loginMember);
-        return  "mainmenu/ranking/ranking";
+        return  "mainmenu/ranking";
     }
 
     //랭킹 불러오기 API

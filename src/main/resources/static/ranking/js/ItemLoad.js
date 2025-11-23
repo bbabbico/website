@@ -24,7 +24,7 @@ function renderRankingList(list, type) {
 
 function renderFirstItem(item,type) {
     return `
-    <div class="bg-white border border-emerald-200 rounded-xl shadow-md hover:shadow-lg transition p-4 w-full max-w-xs mx-auto">
+    <div id="main_div_${type}_1" class="bg-white border border-emerald-200 rounded-xl shadow-md hover:shadow-lg transition p-4 w-full max-w-xs mx-auto">
       <a href="${item.url}" class="w-full h-52 bg-gray-100 rounded-lg flex items-center justify-center mb-4 block">
         <img src="${item.img}" alt="대표이미지" class="w-full h-full object-cover">
       </a>
@@ -33,14 +33,15 @@ function renderFirstItem(item,type) {
         <div class="text-gray-800 font-semibold text-base truncate">${item.name}</div>
         <div class="text-gray-500 text-sm">${item.brand}</div>
         <div class="text-emerald-700 font-bold text-lg mt-2">${item.price}원</div>
-        <button id="saved_button_${type}_1" class="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition" onclick="saved('saved_button_${type}_1')">☮</button>
+        <button id="saved_button_${type}_1" class="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition" 
+        onclick="saved('${type}',1,'${item.url}','${item.img}','${item.name}','${item.brand}','${item.price}원')">☮</button>
       </div>
     </div>
   `;
 }
 function renderOtherItem(item, index, type) {
     return `
-    <div class="bg-white border rounded-xl shadow-sm hover:shadow-md transition p-3 w-full max-w-xs mx-auto my-6">
+    <div id="main_div_${type}_${index + 1}" class="bg-white border rounded-xl shadow-sm hover:shadow-md transition p-3 w-full max-w-xs mx-auto my-6">
       <a href="${item.url}" class="w-full h-52 bg-gray-100 rounded-lg overflow-hidden block mb-3">
         <img src="${item.img}" alt="대표 이미지" class="w-full h-full object-cover">
       </a>
@@ -55,7 +56,8 @@ function renderOtherItem(item, index, type) {
 
         <div class="text-gray-500 text-xs">${item.brand}</div>
         <div class="text-emerald-700 font-semibold text-base mt-1">${item.price}원</div>
-        <button id="saved_button_${type}_${index + 1}" class="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition" onclick="saved('saved_button_${type}_${index + 1}')">☮</button>
+        <button id="saved_button_${type}_${index + 1}" class="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition" 
+        onclick="saved('${type}',${index+1},'${item.url}','${item.img}','${item.name}','${item.brand}','${item.price}원')">☮</button>
       </div>
     </div>
   `;
