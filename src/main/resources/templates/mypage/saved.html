@@ -36,13 +36,7 @@
 
                     <!-- 플랫폼 배지 -->
                     <div class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                        <span th:switch="${saved.rankingItemDTO.platform}">
-                            <span th:case="1">올리브영</span>
-                            <span th:case="2">큐텐</span>
-                            <span th:case="3">쿠팡</span>
-                            <span th:case="4">아마존</span>
-                            <span th:case="*">Unknown</span>
-                        </span>
+                        <span th:replace="~{fragments/platform :: platform-fragment (${saved.rankingItemDTO.platform})}"></span>
                     </div>
 
                     <!-- 상품 이미지 -->

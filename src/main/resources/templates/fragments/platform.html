@@ -1,0 +1,17 @@
+<!-- templates/fragments/platform.html -->
+<!-- 랭킹 상품 관련 페이지에 쓰이는 플랫폼 변환 템플릿 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+
+
+<span th:fragment="platform-fragment (num)" th:switch="${num}">
+    <span th:case="1">올리브영</span>
+    <span th:case="2">큐텐</span>
+    <span th:case="3">쿠팡</span>
+    <span th:case="4">아마존</span>
+    <span th:case="*">Unknown</span>
+</span>
+
+</body>
+</html>
