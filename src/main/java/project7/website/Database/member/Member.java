@@ -1,25 +1,21 @@
 package project7.website.Database.member;
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  * 회원정보 클래스
  * <p>
  * DAO 인터페이스 : {@link MemberRepository}
  */
-
-@Entity
+@Data
+@AllArgsConstructor //테스트 전용
 public class Member {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; //사용자 식별 번호
+    private Long id; //사용자 식별 번호
 
-    @Column(length = 30 , nullable = false)
     private String email; //이메일
-    @Column(length = 30 , nullable = false)
     private String loginId; //로그인 ID
-    @Column(length = 20 , nullable = false)
     private String name; //사용자 이름
-    @Column(length = 40 , nullable = false)
     private String password; //비밀번호
 
 }
