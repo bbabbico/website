@@ -29,9 +29,9 @@ public class indexController {
      */
     @GetMapping("/")
     public String index(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
-        
+
         //로그인 테스트 전용
-        Member qwe = new Member(1L,"qweqwe@qwe","qweqwe","qweee","qweqwe");
+        Member qwe = new Member(1,"qweqwe@qwe","qweqwe","qweee","qweqwe");
         memberRepositoryT.save(qwe);
 
         //세션에 회원 데이터가 없으면 빈 Model 전달

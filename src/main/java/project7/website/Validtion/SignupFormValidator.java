@@ -20,15 +20,15 @@ public class SignupFormValidator implements Validator {
         // email 검증
         if (StringUtils.isEmpty(form.getEmail())) {
             errors.rejectValue("email", "empty", "공백은 입력할 수 없습니다.");
-        } else if (form.getEmail().length() < 4 || form.getEmail().length() > 20) {
-            errors.rejectValue("email", "length", "4~20자로 입력해주세요.");
+        } else if (form.getEmail().length() < 4 || form.getEmail().length() > 30) {
+            errors.rejectValue("email", "length", "4~30자로 입력해주세요.");
         }
 
         // loginId 검증
         if (StringUtils.isEmpty(form.getLoginId())) {
             errors.rejectValue("loginId", "empty", "공백은 입력할 수 없습니다.");
-        } else if (form.getLoginId().length() < 4 || form.getLoginId().length() > 20) {
-            errors.rejectValue("loginId", "length", "4~20자로 입력해주세요.");
+        } else if (form.getLoginId().length() < 4 || form.getLoginId().length() > 30) {
+            errors.rejectValue("loginId", "length", "4~30자로 입력해주세요.");
         }
 
         // name 검증

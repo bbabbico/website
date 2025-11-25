@@ -9,8 +9,8 @@ import java.util.*;
 @Repository
 public class MemberRepositoryT implements MemberRepository {
 
-    private static Map<Long, Member> store = new HashMap<>(); //static 사용
-    private static long sequence = 0L;//static 사용
+    private static Map<Integer, Member> store = new HashMap<>(); //static 사용
+    private static int sequence = 0;//static 사용
 
     public Member save(Member member) {
         member.setId(++sequence);
@@ -19,7 +19,7 @@ public class MemberRepositoryT implements MemberRepository {
         return member;
     }
 
-    public Member findById(Long id) {
+    public Member findById(int id) {
         return store.get(id);
     }
 

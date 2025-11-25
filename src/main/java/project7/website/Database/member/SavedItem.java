@@ -15,14 +15,14 @@ import java.util.Objects;
  */
 public class SavedItem {
     @Getter //타임리프 조회용
-    private final Long id;
+    private final int id;
     @Getter //타임리프 조회용
     private final RankingItemDTO rankingItemDTO;
 
     @Getter
     private final Map<String, RankingItemDTO> saveditemMap = new HashMap<>();
 
-    public SavedItem(Long id, RankingItemDTO rankingItemDTO) {
+    public SavedItem(int id, RankingItemDTO rankingItemDTO) {
         this.id = id;
         this.rankingItemDTO = rankingItemDTO;
     }
