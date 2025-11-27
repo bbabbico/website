@@ -1,11 +1,13 @@
 package project7.website.Validtion;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.thymeleaf.util.StringUtils;
 import project7.website.Database.member.Member;
 
+@Slf4j
 @Component
 public class SignupFormValidator implements Validator {
     @Override
@@ -20,7 +22,7 @@ public class SignupFormValidator implements Validator {
         // email 검증
         if (StringUtils.isEmpty(form.getEmail())) {
             errors.rejectValue("email", "empty", "공백은 입력할 수 없습니다.");
-        } else if (form.getEmail().length() < 4 || form.getEmail().length() > 20) {
+        } else if (form.getEmail().length() < 4 || form.getEmail().length() > 100) {
             errors.rejectValue("email", "length", "4~20자로 입력해주세요.");
         }
 

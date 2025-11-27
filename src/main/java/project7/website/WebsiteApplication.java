@@ -13,7 +13,7 @@ public class WebsiteApplication {
 
 
         ApplicationContext ctx =SpringApplication.run(WebsiteApplication.class, args);
-        LoginService loginService = (LoginService) ctx.getBean("loginService");
+        LoginService loginService = ctx.getBean(LoginService.class);
     }
 
 }

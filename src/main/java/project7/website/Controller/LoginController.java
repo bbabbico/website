@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -62,19 +61,19 @@ public class LoginController {
 
     /**
      * 회원가입 페이지 이동
-     * @param member 로그인 된 상태로 회원가입 접근시 member 객체와 함꼐 돌려보냄
      * @return signup Thymeleaf 페이지
      */
     @GetMapping("/signup")
-    public String signup(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember ,@ModelAttribute("member") Member member){
-        //세션에 회원 데이터가 없으면 페이지 이동
-        if (loginMember == null) {
-            return "login/signup";
+    public String signupForm(
+            @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,
+            @ModelAttribute("member") Member member) {
+
+        if (loginMember != null) { // 로그인 돼 있으면 회원가입 막기
+            return "redirect:/";
         }
 
-        //로그인 세션 존재하면 index 리다이렉트
-        return  "redirect:/";
-
+        // @ModelAttribute("member")가 이미 new Member()를 만들어서 model에 넣어줌
+        return "login/signup";
     }
 
     /**
@@ -117,7 +116,8 @@ public class LoginController {
      * @return 성공시 로그인 페이지 redirect
      */
     @PostMapping("/signup")
-    public String signup(@Validated @ModelAttribute Member member, BindingResult bindingResult) {
+    public String signup(@Validated @ModelAttribute("member") Member member, BindingResult bindingResult) {
+        log.info(member.toString());
         if (bindingResult.hasErrors()) {return "login/signup";}
 
         loginService.join(member);

@@ -5,18 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import project7.website.Database.member.Member;
-import project7.website.Database.member.MemberRepositoryT;
 import project7.website.session.SessionConst;
 
 @Controller
 public class indexController {
-
-    private final MemberRepositoryT memberRepositoryT;
-
-    public indexController(MemberRepositoryT memberRepositoryT) {
-        this.memberRepositoryT = memberRepositoryT;
-    }
-
     /**
      * @SessionAttribute 는 세션을 확인하는 에너테이션이며, 세션이 없으면 새로 생성하지않음.
      * 기본적으로 세션 ID를 URL에 저장하여 유지함
@@ -29,10 +21,6 @@ public class indexController {
      */
     @GetMapping("/")
     public String index(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
-
-        //로그인 테스트 전용
-        Member qwe = new Member(1L,"qweqwe@qwe","qweqwe","qweee","qweqwe");
-        memberRepositoryT.save(qwe);
 
         //세션에 회원 데이터가 없으면 빈 Model 전달
         if (loginMember == null) {
