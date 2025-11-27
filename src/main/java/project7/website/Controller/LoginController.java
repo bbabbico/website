@@ -4,15 +4,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import project7.website.AppConfig;
 import project7.website.Validtion.SignupFormValidator;
 import project7.website.login.LoginForm;
 import project7.website.Validtion.LoginFormValidator;
@@ -27,10 +24,7 @@ public class LoginController {
 
     private final LoginFormValidator loginFormValidator;
     private final SignupFormValidator  signupFormValidator;
-    
-    //AppConfig 에서 가져옴
-    ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-    LoginService loginService = applicationContext.getBean("loginService", LoginService.class );
+    private final LoginService loginService;
 
     //일반적으로 한개의 InitBinder 에 여러 검증기를 등록하면 첫번째 검증기에서 false 가 반환되면 두번째 검증기 안하고 바로 멈춤.
     /**
@@ -51,7 +45,7 @@ public class LoginController {
 
     /**
      * 로그인 페이지 이동
-     * @param form
+     * @param form 로그인 확인용 객체
      * @return login Thymeleaf 페이지
      */
     @GetMapping("/login")
@@ -68,7 +62,7 @@ public class LoginController {
 
     /**
      * 회원가입 페이지 이동
-     * @param member
+     * @param member 로그인 된 상태로 회원가입 접근시 member 객체와 함꼐 돌려보냄
      * @return signup Thymeleaf 페이지
      */
     @GetMapping("/signup")
@@ -85,13 +79,13 @@ public class LoginController {
 
     /**
      * 로그인 요청
-     * @param form
-     * @param bindingResult
-     * @param request
+     * @param form 로그인 정보 DTO
+     * @param bindingResult 스프링 검증 객체
+     * @param request 서블릿 요청 객체
      * @return 성공시 전 페이지 redirect 
      */
     @PostMapping("/login")
-    public String login(@Validated @ModelAttribute LoginForm form, BindingResult bindingResult, @RequestParam(defaultValue = "/") String redirectURL , HttpServletRequest request, Model model) {
+    public String login(@Validated @ModelAttribute LoginForm form, BindingResult bindingResult, @RequestParam(defaultValue = "/") String redirectURL , HttpServletRequest request) {
         if (bindingResult.hasErrors()) {return "login/login";}
 
         Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
@@ -118,8 +112,8 @@ public class LoginController {
 
     /**
      * 회원가입 요청
-     * @param member
-     * @param bindingResult
+     * @param member 사용자 정보가 담긴 객체
+     * @param bindingResult 스프링 검증 객체
      * @return 성공시 로그인 페이지 redirect
      */
     @PostMapping("/signup")
