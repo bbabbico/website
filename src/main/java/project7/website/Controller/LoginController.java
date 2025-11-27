@@ -27,7 +27,8 @@ public class LoginController {
 
     private final LoginFormValidator loginFormValidator;
     private final SignupFormValidator  signupFormValidator;
-
+    
+    //AppConfig 에서 가져옴
     ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
     LoginService loginService = applicationContext.getBean("loginService", LoginService.class );
 
