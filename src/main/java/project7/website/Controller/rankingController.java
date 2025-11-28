@@ -1,18 +1,27 @@
 package project7.website.Controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import project7.website.Database.Repository.RankingItemDTO;
+import project7.website.Database.Repository.RankingItem;
 import project7.website.Database.Repository.RankingItemRepository;
 import project7.website.Database.member.Member;
 import project7.website.session.SessionConst;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequiredArgsConstructor
 public class rankingController {
+
+
+    private final RankingItemRepository rankingItemRepository;
+
+
     @GetMapping("/ranking")
     public String ranking(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember , Model model) {
 
@@ -29,40 +38,13 @@ public class rankingController {
     //랭킹 불러오기 API
     @ResponseBody
     @PostMapping("/ranking")
-    public Map<String, RankingItemRepository> LoadRanking() {
-        RankingItemRepository repo1 = new RankingItemRepository();
-        repo1.addRankingItemDTOList(new RankingItemDTO(1,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo1.addRankingItemDTOList(new RankingItemDTO(1,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo1.addRankingItemDTOList(new RankingItemDTO(1,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo1.addRankingItemDTOList(new RankingItemDTO(1,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
+    public List<RankingItem> LoadRanking() {
+        List<RankingItem> list = new ArrayList<>(rankingItemRepository.findAll());
 
-        RankingItemRepository repo2 = new RankingItemRepository();
-        repo2.addRankingItemDTOList(new RankingItemDTO(2,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo2.addRankingItemDTOList(new RankingItemDTO(2,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo2.addRankingItemDTOList(new RankingItemDTO(2,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo2.addRankingItemDTOList(new RankingItemDTO(2,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-
-        RankingItemRepository repo3 = new RankingItemRepository();
-        repo3.addRankingItemDTOList(new RankingItemDTO(3,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo3.addRankingItemDTOList(new RankingItemDTO(3,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo3.addRankingItemDTOList(new RankingItemDTO(3,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo3.addRankingItemDTOList(new RankingItemDTO(3,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-
-        RankingItemRepository repo4 = new RankingItemRepository();
-        repo4.addRankingItemDTOList(new RankingItemDTO(4,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo4.addRankingItemDTOList(new RankingItemDTO(4,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo4.addRankingItemDTOList(new RankingItemDTO(4,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
-        repo4.addRankingItemDTOList(new RankingItemDTO(4,"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023633808ko.jpg?l=ko", "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236338&dispCatNo=90000010009&trackingCd=Best_Sellingbest&t_page=%EB%9E%AD%ED%82%B9&t_click=%ED%8C%90%EB%A7%A4%EB%9E%AD%ED%82%B9_%EC%A0%84%EC%B2%B4_%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_number=1", "에스트라", "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획(+에센스 25ML + 세라-히알 앰플 7ML)", "100,000,000"));
+        Map<Integer , RankingItem> result = new HashMap<>();
 
 
-        Map<String, RankingItemRepository> result = new HashMap<>();
-
-        result.put("oliveyoung", repo1); //아직 플랫폼 검증 구현안됨.
-        result.put("qoo10", repo2);
-        result.put("coupang", repo3);
-        result.put("amazon", repo4);
-
-        return result;
+        return list;
     }
 
     //실험용페이지

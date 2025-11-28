@@ -6,13 +6,13 @@ package project7.website.Database.Repository;
  * <p>
  * 판매 플랫폼 번호
  * <p>
- * 1 : 올리브영
+ * 0 : 올리브영
  * <p>
- * 2 : 큐텐
+ * 1 : 큐텐
  * <p>
- * 3 : 쿠팡
+ * 2 : 쿠팡
  * <p>
- * 4 : 아마존
+ * 3 : 아마존
  *
  * @param platform 판매 플랫폼 번호
  * @param img 이미지 URL

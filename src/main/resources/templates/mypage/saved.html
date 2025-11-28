@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>저장한 품목 | Inflearn 스타일</title>
+    <title>저장한 품목</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -37,25 +37,25 @@
                     <!-- 플랫폼 배지 -->
                     <div class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
                         <!-- 플랫폼 변환 템플릿 -->
-                        <span th:replace="~{fragments/platform :: platform-fragment (${saved.rankingItemDTO.platform})}"></span>
+                        <span th:replace="~{fragments/platform :: platform-fragment (${saved.rankingItem.platform})}"></span>
                     </div>
 
                     <!-- 상품 이미지 -->
-                    <a th:href="${saved.rankingItemDTO.url}"
+                    <a th:href="${saved.rankingItem.url}"
                        class="w-full h-52 bg-gray-100 rounded-lg flex items-center justify-center mb-4 block overflow-hidden">
-                        <img th:src="${saved.rankingItemDTO.img}" class="w-full h-full object-cover" alt="상품 대표 이미지"/>
+                        <img th:src="${saved.rankingItem.img}" class="w-full h-full object-cover" alt="상품 대표 이미지"/>
                     </a>
 
                     <!-- 상품 정보 -->
                     <div class="space-y-1 text-center">
                         <div class="text-gray-800 font-semibold text-base truncate"
-                             th:text="${saved.rankingItemDTO.name}"></div>
+                             th:text="${saved.rankingItem.name}"></div>
 
                         <div class="text-gray-500 text-sm"
-                             th:text="${saved.rankingItemDTO.brand}"></div>
+                             th:text="${saved.rankingItem.brand}"></div>
 
                         <div class="text-emerald-700 font-bold text-lg mt-2"
-                             th:text="|${saved.rankingItemDTO.price}원|"></div>
+                             th:text="|${saved.rankingItem.price}원|"></div>
                     </div>
 
                 </div>

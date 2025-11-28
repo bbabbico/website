@@ -3,13 +3,26 @@ function qwe() {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            renderRankingList(data.oliveyoung.list);   // 올리브영
-            renderRankingList(data.qoo10.list);   // 큐텐
-            renderRankingList(data.coupang.list); // 쿠팡
-            renderRankingList(data.amazon.list);  // 아마존
+            groupByPlatformArray(data);
 
         })
         .catch(err => console.error("API Error:", err));
+}
+function groupByPlatformArray(items) {
+    const result = [];
+
+    items.forEach(item => {
+        const key = item.platform;
+        if (!result[key]) {
+            result[key] = [];
+        }
+        result[key].push(item);
+    });
+
+    renderRankingList(result[0]);
+    renderRankingList(result[1]);
+    renderRankingList(result[2]);
+    renderRankingList(result[3]);
 }
 
 function renderRankingList(list) {
@@ -42,7 +55,7 @@ function renderFirstItem(item) {
 }
 function renderOtherItem(item, index) {
     return `
-    <div id="main_div_${item.platform}_${index + 1}" class="bg-white border rounded-xl shadow-sm hover:shadow-md transition p-3 w-full max-w-xs mx-auto my-6">
+    <div id="main_div_${item.platform}_${index}" class="bg-white border rounded-xl shadow-sm hover:shadow-md transition p-3 w-full max-w-xs mx-auto my-6">
       <a href="${item.url}" class="w-full h-52 bg-gray-100 rounded-lg overflow-hidden block mb-3">
         <img src="${item.img}" alt="대표 이미지" class="w-full h-full object-cover">
       </a>
@@ -57,8 +70,8 @@ function renderOtherItem(item, index) {
 
         <div class="text-gray-500 text-xs">${item.brand}</div>
         <div class="text-emerald-700 font-semibold text-base mt-1">${item.price}원</div>
-        <button id="saved_button_${item.platform}_${index + 1}" class="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition" 
-        onclick="saved('${item.platform}',${index+1},'${item.url}','${item.img}','${item.name}','${item.brand}','${item.price}원')">☮</button>
+        <button id="saved_button_${item.platform}_${index}" class="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition" 
+        onclick="saved('${item.platform}',${index},'${item.url}','${item.img}','${item.name}','${item.brand}','${item.price}원')">☮</button>
       </div>
     </div>
   `;

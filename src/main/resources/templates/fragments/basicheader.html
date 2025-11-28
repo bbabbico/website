@@ -10,10 +10,10 @@
     <!-- 좌측 로고 -->
     <a href="/"><h1 class="text-2xl font-bold text-emerald-600" th:text="|${title} page|"></h1></a>
 
-    <!-- ✅ 중앙 네비게이션 -->
+    <!-- 중앙 네비게이션 -->
     <nav class="hidden md:flex items-center space-x-6 text-gray-700 font-medium" th:if="${activeTab}!='None'">
 
-      <!-- ✅ 각 메뉴에 activeTab 비교 -->
+      <!-- 각 메뉴에 activeTab 비교 -->
       <a href="/news"
          th:classappend="${activeTab} == 'news' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
         주요뉴스
@@ -28,7 +28,7 @@
     <!-- 우측 메뉴 -->
     <div class="flex items-center space-x-4">
 
-      <!-- ✅ 로그인 상태: 회원 이름 + 로그아웃 -->
+      <!-- 로그인 상태: 회원 이름 + 로그아웃 -->
       <div class="flex items-center space-x-3" th:if="${member}">
                     <span class="text-gray-700 font-medium">
                         환영합니다, <a href="mypage" class="text-emerald-600 font-semibold" th:text="${member.name}"></a> 님 👋
@@ -42,7 +42,7 @@
         </form>
       </div>
 
-      <!-- ✅ 비로그인 상태: 로그인 / 회원가입 -->
+      <!-- 비로그인 상태: 로그인 / 회원가입 -->
       <div class="flex items-center space-x-3" th:unless="${member}">
         <form action="/login" method="get">
           <button type="submit"

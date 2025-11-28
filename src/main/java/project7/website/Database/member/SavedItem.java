@@ -1,52 +1,41 @@
 package project7.website.Database.member;
 
-import lombok.Getter;
-import project7.website.Database.Repository.RankingItemDTO;
-import project7.website.Database.Repository.SavedItemRepository;
+import jakarta.persistence.*;
+import lombok.*;
+import project7.website.Database.Repository.RankingItem;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
-/**
- * 상품 저장목록 객체
- * <p>
- * 구현체 : {@link SavedItemRepository}
- */
+@Entity
+@Table(
+        name = "saved_item",
+        uniqueConstraints = {
+                @UniqueConstraint( //저장 한거 또 저장하면 안됨
+                        name = "uk_saved_item_member_ranking_item",
+                        columnNames = {"member_id", "ranking_item_id"}
+                )
+        }
+)
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class SavedItem {
-    @Getter //타임리프 조회용
-    private final Long id;
-    @Getter //타임리프 조회용
-    private final RankingItemDTO rankingItemDTO;
 
-    @Getter
-    private final Map<String, RankingItemDTO> saveditemMap = new HashMap<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // SavedItem 자체 PK
 
-    public SavedItem(Long id, RankingItemDTO rankingItemDTO) {
-        this.id = id;
-        this.rankingItemDTO = rankingItemDTO;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "rankingitem_id")
+    private RankingItem rankingItem; // 여기 안에 platform, name, url 등 모두 들어있음
+
+    // 편의 생성자
+    public SavedItem(Member member, RankingItem rankingItem) {
+        this.member = member;
+        this.rankingItem = rankingItem;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (SavedItem) obj;
-        return Objects.equals(this.id, that.id) &&
-                Objects.equals(this.rankingItemDTO, that.rankingItemDTO);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, rankingItemDTO);
-    }
-
-    @Override
-    public String toString() {
-        return "WatchList[" +
-                "id=" + id + ", " +
-                "rankingItemDTO=" + rankingItemDTO + ']';
-    }
-
-
 }

@@ -1,26 +1,12 @@
 package project7.website.Database.Repository;
 
-import java.util.LinkedList;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.List;
+import java.util.Optional;
 
-/**
- * 랭킹 페이지 상품 객체 DB 관리 클래스 (테스트용)
- *
- */
-public class RankingItemRepository {
-
-    private final LinkedList<RankingItemDTO> rankingItemDTOList = new LinkedList<>();
-
-    public void addRankingItemDTOList(RankingItemDTO rankingItemDTO) {
-        rankingItemDTOList.add(rankingItemDTO);
-    }
-    public List<RankingItemDTO> getList() {
-        return rankingItemDTOList;
-    }
-    /**
-     * LinkedList 비우기
-     */
-    public void clearRankingItemDTOList() {
-        rankingItemDTOList.clear();
-    }
+public interface RankingItemRepository extends JpaRepository<RankingItem,Long> {
+    List<RankingItem> findByPlatform(int platform);
+    // 플랫폼 + url 조회
+    Optional<RankingItem> findByNameAndBrand(String name, String brand);
 }

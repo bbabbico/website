@@ -1,4 +1,4 @@
-function saved(platform,rank,img,url,name,brand,price){
+function saved(platform,index,img,url,name,brand,price){ //index는 버튼 바꾸기용임.
     const item ={ //상품 정보 obj
         "platform" :platform,
         "img" :img,
@@ -18,5 +18,5 @@ function saved(platform,rank,img,url,name,brand,price){
         .then((res)=>res.json())
         .then((data)=>console.log(data))
 
-    document.getElementById(`saved_button_${platform}_${rank}`).innerText = "❤"
+    document.getElementById(`saved_button_${platform}_${index}`).innerText = "❤"
 }
