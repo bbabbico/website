@@ -10,8 +10,18 @@ description = 'website'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+        languageVersion = JavaLanguageVersion.of(17)
     }
+}
+jar { //plain.jar 같은 개같은 파일 생성 막기
+    enabled = false
+}
+/**
+ * 스프링부트 메인 클래스 지정
+ * 실제 @SpringBootApplication 이 붙어 있는 클래스
+ */
+springBoot { //gradlew 개같이 만들어놔서 이거 붙여야 동작함
+    mainClass = 'project7.website.WebsiteApplication'
 }
 
 configurations {

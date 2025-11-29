@@ -1,0 +1,9 @@
+# 이미지 빌드
+docker build -t website:2025_11_29 .
+
+# 컨테이너 실행 (호스트 8080 → 컨테이너 8080 매핑)
+docker run -p 8080:8080 website:2025_11_29
+
+# 쓰레기 더미 제거
+docker image prune
+docker builder prune
