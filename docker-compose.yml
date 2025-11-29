@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: website-mysql-server:1
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: (ehgus2003)
+      MYSQL_DATABASE: website
+      MYSQL_USER: user
+      MYSQL_PASSWORD: (ehgus2003)
+      TZ: Asia/Seoul
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  spring-server:
+    image: website-spring-server:1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-server
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/website?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: (ehgus2003)
+
+volumes:
+  mysql_data:
