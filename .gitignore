@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### SQL 설정 파일 ###
-.env
+*.env
