@@ -2,8 +2,33 @@
 docker build -t website:2025_11_29 .
 
 # 컨테이너 실행 (호스트 8080 → 컨테이너 8080 매핑)
-docker run -p 8080:8080 website:2025_11_29
+docker run -p 8080:8080 website-app .
 
 # 쓰레기 더미 제거
 docker image prune
 docker builder prune
+
+#mysql
+docker build -t mysql:1 .
+
+
+#도커 컴포즈
+# 처음 또는 Dockerfile/compose 수정 후
+
+docker compose up -d --build
+
+up : 각 서비스별로 컨테이너 생성+실행
+-d : 백그라운드 모드로 실행
+
+# 로그 확인
+docker compose logs -f app
+# 또는
+docker logs -f spring-app
+# 실행중 컨테이너 확인
+docker ps
+# 스프링 부트 로그 확인
+docker logs -f spring-app
+# 컨테이너 모두 중지
+docker compose down
+# 컨테이너 + 네트워크 + 볼륨 모두 삭제
+docker compose down -v

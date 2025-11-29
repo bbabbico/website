@@ -25,7 +25,7 @@ WORKDIR /app
 
 # 빌드 결과물 JAR 복사 (버전 이름 상관없이 *.jar 가져오기)
 ARG JAR_FILE=build/libs/*.jar
-COPY --from=builder /build/${JAR_FILE} app.jar
+COPY --from=builder /build/${JAR_FILE} spring_server.jar
 
 # 컨테이너 시작 시 실행 명령
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/spring_server.jar"]

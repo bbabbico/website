@@ -1,0 +1,7 @@
+mysql -u root -p
+
+show databases;
+use database;
+
+show tables
+explain 테이블명;
