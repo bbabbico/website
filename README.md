@@ -6,6 +6,9 @@ JAVA Spring Web
 JAVA Spring
 Thymeleaf
 tailwindcss
+
+Docker
+Docker Compose
 </pre>
 
-장바구니 기능 추가후 DB 추가요망
+뉴스 리터 기능 추가요망
