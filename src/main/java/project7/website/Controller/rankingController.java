@@ -1,6 +1,7 @@
 package project7.website.Controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class rankingController {
@@ -40,7 +42,6 @@ public class rankingController {
     @PostMapping("/ranking")
     public List<RankingItem> LoadRanking() {
         List<RankingItem> list = new ArrayList<>(rankingItemRepository.findAll());
-
         Map<Integer , RankingItem> result = new HashMap<>();
 
 
