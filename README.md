@@ -1,5 +1,9 @@
 자바 웹 테스트
 
+website/ 에서
+
+docker compose up -d --build
+
 테스트 버전이라 env 도 그냥 올렸다
 
 <pre>
