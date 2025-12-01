@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import project7.website.Database.Repository.RankingItemDTO;
-import project7.website.Database.Repository.SavedItemRepository;
 import project7.website.Database.Repository.SavedItemService;
 import project7.website.Database.member.Member;
 import project7.website.session.SessionConst;
@@ -19,9 +18,6 @@ import project7.website.session.SessionConst;
 @RestController
 @RequiredArgsConstructor
 public class WatchListController {
-    //랭킹 사이트 API
-    //장바구니 사이트 API
-    private final SavedItemRepository savedItemRepository;
     private final SavedItemService savedItemService;
 
     @ResponseBody

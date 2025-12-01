@@ -13,7 +13,7 @@ public class WebsiteApplication {
 
 
         ApplicationContext ctx =SpringApplication.run(WebsiteApplication.class, args);
-        LoginService loginService = ctx.getBean(LoginService.class);
+        LoginService loginService = ctx.getBean(LoginService.class); //LoginService 객체를 스프링 시작할때 미리 생성하여 JPA 연결 및 DI 활성화
     }
 
 }
