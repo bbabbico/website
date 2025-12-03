@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mysql:
-    image: website-mysql-server:1
+    image: website-mysql-server:2
     build:
       context: ./mysql
       dockerfile: Dockerfile
@@ -18,7 +18,7 @@ services:
       - mysql_data:/var/lib/mysql
 
   spring-server:
-    image: website-spring-server:1
+    image: website-spring-server:2
     build:
       context: .
       dockerfile: Dockerfile
