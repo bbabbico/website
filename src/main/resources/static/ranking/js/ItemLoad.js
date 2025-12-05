@@ -65,7 +65,7 @@ function renderOtherItem(item, index) {
 
         <div class="text-gray-800 font-medium text-sm overflow-hidden text-ellipsis"
              style="display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;">
-          ${item.name.length > 50 ? item.name.substring(0, 50) + '…' : item.name}
+          ${item.name.length > 42 ? item.name.substring(0, 42) + '…' : item.name}
         </div>
 
         <div class="text-gray-500 text-xs">${item.brand}</div>
