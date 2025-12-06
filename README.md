@@ -17,4 +17,5 @@ Docker
 Docker Compose
 </pre>
 
-뉴스 리터 기능 추가요망
+지금 까지 header th:fragment="basicheader-fragment (title , activeTab)" class="bg-white shadow-sm fixed w-full z-10"
+포지션을 fixed 로 되어서 main 섹션과 겹칠 수 밖에 없는건데 main 에서는 pt-48 해놔서 그냥 header 를 피하기만함.
