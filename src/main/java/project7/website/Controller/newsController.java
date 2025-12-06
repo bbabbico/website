@@ -14,12 +14,12 @@ public class newsController {
     public String news(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember , Model model) {
         //세션에 회원 데이터가 없으면 빈 Model 전달
         if (loginMember == null) {
-            return  "mainmenu/news";
+            return  "mainmenu/newsindex";
         }
 
         //로그인 세션 존재하면 view 전달
         model.addAttribute("member", loginMember);
-        return  "mainmenu/news";
+        return  "mainmenu/newsindex";
 
     }
 }
