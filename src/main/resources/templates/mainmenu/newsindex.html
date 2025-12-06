@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty News - 뷰티 뉴스</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* 기본 타이포그래피 설정 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+        
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        p, span {
+            font-size: 0.875rem;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-neutral-50">
+
+<!-- ✅ Header -->
+<div th:replace="~{fragments/basicheader :: basicheader-fragment ('news' , 'news')}"></div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8 pt-28">
+        <!-- Main Content Area - 메인 기사 + 서브 기사 -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+
+            <div th:replace="~{fragments/news :: Main-Article}"></div>
+            <div th:replace="~{fragments/news :: Sub-Articles}"></div>
+
+        </div>
+
+        <!-- SUB Content Area - 일반적인 기사 -->
+        <div th:replace="~{fragments/news :: Under-Articles}"></div>
+    </main>
+
+<!-- ✅ Footer -->
+<div th:replace="~{fragments/footer :: footer-fragment ('news')}"></div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

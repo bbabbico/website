@@ -1,0 +1,297 @@
+<!-- templates/fragments/news.html -->
+<!-- 뉴스 페이지 에 사용된 아티클 템플릿 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Main Article - 왼쪽 -->
+<div class="lg:col-span-2" th:fragment="Main-Article">
+  <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+    <div class="relative flex-1">
+      <img
+              src="https://images.unsplash.com/photo-1629380106682-6736d2c327ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjBza2luY2FyZSUyMHByb2R1Y3RzfGVufDF8fHx8MTc2NDkzMDkxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Main beauty trend"
+              class="w-full h-full object-cover"
+      />
+      <div class="absolute top-4 left-4">
+        <span class="bg-emerald-600 text-white px-3 py-1 rounded-full">주요 트렌드</span>
+      </div>
+    </div>
+
+    <div class="p-6">
+      <h2 class="text-emerald-600 mb-4">
+        2025 스킨케어 트렌드: 지속가능한 뷰티가 대세
+      </h2>
+
+      <p class="text-neutral-600 mb-4">
+        올해 뷰티 업계는 환경을 생각하는 지속가능한 제품들이 주목받고 있습니다.
+        친환경 포장재와 비건 성분을 사용한 스킨케어 라인이 소비자들의 큰 관심을 얻고 있으며,
+        제로 웨이스트 뷰티 운동이 확산되고 있습니다. 주요 브랜드들은 리필 시스템을 도입하고
+        생분해 가능한 포장재를 사용하며 환경 보호에 앞장서고 있습니다.
+      </p>
+
+      <div class="flex items-center gap-4 text-neutral-500">
+        <div class="flex items-center gap-1">
+          <i data-lucide="user" class="w-4 h-4"></i>
+          <span>김지원 기자</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <i data-lucide="clock" class="w-4 h-4"></i>
+          <span>2시간 전</span>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<!-- Sub Articles - 오른쪽 -->
+<div class="lg:col-span-1" th:fragment="Sub-Articles">
+  <div class="space-y-4">
+    <div class="flex items-center gap-2 mb-4">
+      <i data-lucide="building-2" class="w-5 h-5 text-emerald-600"></i>
+      <h3 class="text-neutral-800">뷰티 기업 정보</h3>
+    </div>
+
+    <!-- Company Article 1 -->
+    <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      <div class="relative h-40">
+        <img
+                src="https://images.unsplash.com/photo-1539278383962-a7774385fa02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjBpbmR1c3RyeSUyMGJ1c2luZXNzfGVufDF8fHx8MTc2NDk4NjQ5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="아모레퍼시픽"
+                class="w-full h-full object-cover"
+        />
+      </div>
+
+      <div class="p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-emerald-600">아모레퍼시픽</span>
+          <!-- 주가 상승 및 상승 아이콘 -->
+          <div class="flex items-center gap-1 text-red-500">
+            <i data-lucide="trending-up" class="w-4 h-4"></i>
+            <span>+12.5%</span>
+          </div>
+        </div>
+
+        <p class="text-neutral-700 mb-2">
+          글로벌 시장 공략 강화, 신제품 라인 확대
+        </p>
+
+        <span class="text-neutral-400">3시간 전</span>
+      </div>
+    </article>
+
+    <!-- Company Article 2 -->
+    <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      <div class="relative h-40">
+        <img
+                src="https://images.unsplash.com/photo-1724732678052-1437962cbbab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBwZXJmdW1lJTIwZnJhZ3JhbmNlfGVufDF8fHx8MTc2NDkxMzY1OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="LG생활건강"
+                class="w-full h-full object-cover"
+        />
+      </div>
+
+      <div class="p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-emerald-600">LG생활건강</span>
+          <div class="flex items-center gap-1 text-red-500">
+            <i data-lucide="trending-up" class="w-4 h-4"></i>
+            <span>+8.3%</span>
+          </div>
+        </div>
+
+        <p class="text-neutral-700 mb-2">
+          프리미엄 라인 매출 호조, 해외 진출 확대
+        </p>
+
+        <span class="text-neutral-400">5시간 전</span>
+      </div>
+    </article>
+
+    <!-- Company Article 3 -->
+    <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      <div class="relative h-40">
+        <img
+                src="https://images.unsplash.com/photo-1755196712073-a536f713aa45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpYyUyMGJvdHRsZXMlMjBtb2Rlcm58ZW58MXx8fHwxNzY0OTg2NDk4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="코스맥스"
+                class="w-full h-full object-cover"
+        />
+      </div>
+
+      <div class="p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-emerald-600">코스맥스</span>
+          <div class="flex items-center gap-1 text-blue-500">
+            <i data-lucide="trending-down" class="w-4 h-4"></i>
+            <span>-15.7%</span>
+          </div>
+        </div>
+
+        <p class="text-neutral-700 mb-2">
+          K-뷰티 제조 수출 증가, 신규 공장 설립
+        </p>
+
+        <span class="text-neutral-400">1일 전</span>
+      </div>
+    </article>
+  </div>
+</div>
+</div>
+
+
+<!-- Under Articles - 하단 -->
+<section th:fragment="Under-Articles">
+  <div class="flex items-center gap-2 mb-6">
+    <i data-lucide="newspaper" class="w-5 h-5 text-emerald-600"></i>
+    <h3 class="text-neutral-800">최신 뷰티 뉴스</h3>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- News Card 1 -->
+    <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+      <div class="relative h-48 overflow-hidden">
+        <img
+                src="https://images.unsplash.com/photo-1642368667229-101f6dadd93a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWtldXAlMjBjb3NtZXRpY3MlMjB0cmVuZHN8ZW58MXx8fHwxNzY0OTg2NDkzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="제품리뷰"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div class="absolute top-3 left-3">
+          <span class="bg-blue-500 text-white px-2 py-1 rounded">제품리뷰</span>
+        </div>
+      </div>
+
+      <div class="p-4">
+        <h4 class="text-neutral-800 mb-2 line-clamp-2">
+          올리브영 베스트셀러 TOP 10, 실제 사용 후기
+        </h4>
+
+        <p class="text-neutral-600 mb-4 line-clamp-2">
+          2025년 상반기 가장 많이 팔린 뷰티 제품들을 직접 사용해보고 솔직한 리뷰를 공유합니다.
+        </p>
+
+        <div class="flex items-center gap-3 text-neutral-400">
+          <div class="flex items-center gap-1">
+            <i data-lucide="user" class="w-3 h-3"></i>
+            <span>박서연</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i data-lucide="clock" class="w-3 h-3"></i>
+            <span>4시간 전</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- News Card 2 -->
+    <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+      <div class="relative h-48 overflow-hidden">
+        <img
+                src="https://images.unsplash.com/photo-1552511556-9f16dcb6561f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjBzcGElMjB3ZWxsbmVzc3xlbnwxfHx8fDE3NjQ5MDQ4MjF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="인터뷰"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div class="absolute top-3 left-3">
+          <span class="bg-purple-500 text-white px-2 py-1 rounded">인터뷰</span>
+        </div>
+      </div>
+
+      <div class="p-4">
+        <h4 class="text-neutral-800 mb-2 line-clamp-2">
+          메이크업 아티스트 정지수가 말하는 2025 메이크업 트렌드
+        </h4>
+
+        <p class="text-neutral-600 mb-4 line-clamp-2">
+          유명 메이크업 아티스트와의 인터뷰를 통해 올해 주목해야 할 메이크업 트렌드를 알아봅니다.
+        </p>
+
+        <div class="flex items-center gap-3 text-neutral-400">
+          <div class="flex items-center gap-1">
+            <i data-lucide="user" class="w-3 h-3"></i>
+            <span>최민지</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i data-lucide="clock" class="w-3 h-3"></i>
+            <span>6시간 전</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- News Card 3 -->
+    <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+      <div class="relative h-48 overflow-hidden">
+        <img
+                src="https://images.unsplash.com/photo-1609357912334-e96886c0212b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXR1cmFsJTIwc2tpbmNhcmUlMjByb3V0aW5lfGVufDF8fHx8MTc2NDk4NjQ5NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="뷰티팁"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div class="absolute top-3 left-3">
+          <span class="bg-green-500 text-white px-2 py-1 rounded">뷰티팁</span>
+        </div>
+      </div>
+
+      <div class="p-4">
+        <h4 class="text-neutral-800 mb-2 line-clamp-2">
+          피부과 전문의가 알려주는 겨울철 스킨케어 루틴
+        </h4>
+
+        <p class="text-neutral-600 mb-4 line-clamp-2">
+          건조한 겨울, 촉촉한 피부를 유지하는 피부과 전문의의 스킨케어 노하우를 공개합니다.
+        </p>
+
+        <div class="flex items-center gap-3 text-neutral-400">
+          <div class="flex items-center gap-1">
+            <i data-lucide="user" class="w-3 h-3"></i>
+            <span>이수현</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i data-lucide="clock" class="w-3 h-3"></i>
+            <span>8시간 전</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- News Card 4 -->
+    <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+      <div class="relative h-48 overflow-hidden">
+        <img
+                src="https://images.unsplash.com/photo-1755196712073-a536f713aa45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpYyUyMGJvdHRsZXMlMjBtb2Rlcm58ZW58MXx8fHwxNzY0OTg2NDk4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="업계소식"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div class="absolute top-3 left-3">
+          <span class="bg-orange-500 text-white px-2 py-1 rounded">업계소식</span>
+        </div>
+      </div>
+
+      <div class="p-4">
+        <h4 class="text-neutral-800 mb-2 line-clamp-2">
+          K-뷰티, 북미 시장에서 40% 성장 달성
+        </h4>
+
+        <p class="text-neutral-600 mb-4 line-clamp-2">
+          한국 화장품이 북미 시장에서 큰 성공을 거두며 K-뷰티 열풍이 지속되고 있습니다.
+        </p>
+
+        <div class="flex items-center gap-3 text-neutral-400">
+          <div class="flex items-center gap-1">
+            <i data-lucide="user" class="w-3 h-3"></i>
+            <span>강민수</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i data-lucide="clock" class="w-3 h-3"></i>
+            <span>12시간 전</span>
+          </div>
+        </div>
+      </div>
+    </article>
+   </div>
+</section>
+
+
+</body>
+</html>
