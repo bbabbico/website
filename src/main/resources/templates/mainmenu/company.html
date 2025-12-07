@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>대한민국 화장품 제조 기업 시가총액 순위</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         }
     </style>
+
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50">
 
@@ -37,7 +40,7 @@
 
                         <!-- 순위 -->
                         <td class="px-6 py-4 text-gray-900"
-                            th:text="${company.rank}">1</td>
+                            th:text="${company.rank_no}">1</td>
 
                         <!-- 기업명 + 이미지 -->
                         <td class="px-6 py-4 text-gray-900">
@@ -65,17 +68,29 @@
 
                         <!-- 전일 대비 -->
                         <td class="px-6 py-4 text-right">
-                            <div class="flex items-center justify-end gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="16" height="16" viewBox="0 0 24 24"
-                                     stroke="currentColor" stroke-width="2"
-                                     stroke-linecap="round" stroke-linejoin="round"
-                                     class="text-red-600">
-                                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                                    <polyline points="16 7 22 7 22 13"></polyline>
-                                </svg>
-                                <span class="text-red-600"
-                                      th:text="${company.vs}">전일 등락 비율</span>
+                            <div th:with="
+                                    trimmed=${#strings.trim(company.vs)},
+                                    isZero=${#strings.startsWith(trimmed, '0')
+                                            or #strings.startsWith(trimmed, '+0')
+                                            or #strings.startsWith(trimmed, '-0')},
+                                    isMinus=${#strings.startsWith(trimmed, '-')}
+                                 "
+                                 th:class="|flex items-center justify-end gap-1 ${isZero ? 'text-gray-500' : (isMinus ? 'text-blue-500' : 'text-red-500')}|">
+
+                                <!-- +일 때만: 상승 아이콘 -->
+                                <i th:if="${!isZero and !isMinus}"
+                                   data-lucide="trending-up"
+                                   class="w-4 h-4"></i>
+
+                                <!-- -일 때만: 하락 아이콘 -->
+                                <i th:if="${isMinus}"
+                                   data-lucide="trending-down"
+                                   class="w-4 h-4"></i>
+
+                                <!-- 전일 대비 텍스트 -->
+                                <span th:text="${company.vs}">
+                                    전일 등락 비율
+                                </span>
                             </div>
                         </td>
                     </tr>
@@ -95,5 +110,9 @@
 <!-- ✅ Footer -->
 <div th:replace="~{fragments/footer :: footer-fragment ('company')}"></div>
 
+<!-- Initialize Lucide Icons -->
+<script>
+    lucide.createIcons();
+</script>
 </body>
 </html>
