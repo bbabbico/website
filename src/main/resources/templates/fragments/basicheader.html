@@ -19,6 +19,11 @@
         주요뉴스
       </a>
 
+      <a href="/company"
+         th:classappend="${activeTab} == 'company' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
+        기업 비교
+      </a>
+
       <a href="/ranking"
          th:classappend="${activeTab} == 'ranking' ? 'text-emerald-600 border-b-2 border-emerald-600 pb-1 font-semibold' : 'hover:text-emerald-600 transition'">
         랭킹

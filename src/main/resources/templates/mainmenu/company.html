@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대한민국 화장품 제조 기업 시가총액 순위</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50">
+
+<!-- ✅ Header -->
+<div th:replace="~{fragments/basicheader :: basicheader-fragment ('company' , 'company')}"></div>
+
+    <!-- Main Section -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-100 border-b border-gray-200">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-gray-700">순위</th>
+                            <th class="px-6 py-4 text-left text-gray-700">기업명</th>
+                            <th class="px-6 py-4 text-right text-gray-700">시가총액</th>
+                            <th class="px-6 py-4 text-center text-gray-700">세계순위</th>
+                            <th class="px-6 py-4 text-right text-gray-700">현재 주가</th>
+                            <th class="px-6 py-4 text-right text-gray-700">전일 대비</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <!-- 1위: 아모레퍼시픽 -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 text-gray-900">1</td>
+                            <td class="px-6 py-4 text-gray-900">
+                                <div class="flex items-center gap-3">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1655568561429-2da330af5442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjBwcm9kdWN0JTIwcGFja2FnaW5nfGVufDF8fHx8MTc2NTA3NTAxOXww&ixlib=rb-4.1.0&q=80&w=1080" 
+                                        alt="아모레퍼시픽"
+                                        class="w-12 h-12 rounded-lg object-cover"
+                                    />
+                                    <span>아모레퍼시픽</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right text-gray-900">8조 4,521억</td>
+                            <td class="px-6 py-4 text-center text-gray-600">#245</td>
+                            <td class="px-6 py-4 text-right text-gray-900">125,000원</td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
+                                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                        <polyline points="16 7 22 7 22 13"></polyline>
+                                    </svg>
+                                    <span class="text-red-600">+2,500원 (2.04%)</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 2위: LG생활건강 -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 text-gray-900">2</td>
+                            <td class="px-6 py-4 text-gray-900">
+                                <div class="flex items-center gap-3">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1620815166537-693bf38d9fdb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxza2luY2FyZSUyMGNvc21ldGljc3xlbnwxfHx8fDE3NjUwNjAxNzh8MA&ixlib=rb-4.1.0&q=80&w=1080" 
+                                        alt="LG생활건강"
+                                        class="w-12 h-12 rounded-lg object-cover"
+                                    />
+                                    <span>LG생활건강</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right text-gray-900">7조 2,340억</td>
+                            <td class="px-6 py-4 text-center text-gray-600">#298</td>
+                            <td class="px-6 py-4 text-right text-gray-900">342,000원</td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                        <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline>
+                                        <polyline points="16 17 22 17 22 11"></polyline>
+                                    </svg>
+                                    <span class="text-blue-600">-5,000원 (-1.44%)</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 3위: 코스맥스 -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 text-gray-900">3</td>
+                            <td class="px-6 py-4 text-gray-900">
+                                <div class="flex items-center gap-3">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1667369039699-f30c4b863e51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWtldXAlMjBjb3NtZXRpY3N8ZW58MXx8fHwxNzY0OTgwNzI0fDA&ixlib=rb-4.1.0&q=80&w=1080" 
+                                        alt="코스맥스"
+                                        class="w-12 h-12 rounded-lg object-cover"
+                                    />
+                                    <span>코스맥스</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right text-gray-900">3조 1,250억</td>
+                            <td class="px-6 py-4 text-center text-gray-600">#512</td>
+                            <td class="px-6 py-4 text-right text-gray-900">89,500원</td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
+                                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                        <polyline points="16 7 22 7 22 13"></polyline>
+                                    </svg>
+                                    <span class="text-red-600">+1,200원 (1.36%)</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 4위: 한국콜마 -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 text-gray-900">4</td>
+                            <td class="px-6 py-4 text-gray-900">
+                                <div class="flex items-center gap-3">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1654973433534-1238e06f6b38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjb3NtZXRpY3N8ZW58MXx8fHwxNzY1MDE2ODMxfDA&ixlib=rb-4.1.0&q=80&w=1080" 
+                                        alt="한국콜마"
+                                        class="w-12 h-12 rounded-lg object-cover"
+                                    />
+                                    <span>한국콜마</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right text-gray-900">2조 8,430억</td>
+                            <td class="px-6 py-4 text-center text-gray-600">#578</td>
+                            <td class="px-6 py-4 text-right text-gray-900">67,800원</td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                        <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline>
+                                        <polyline points="16 17 22 17 22 11"></polyline>
+                                    </svg>
+                                    <span class="text-blue-600">-800원 (-1.17%)</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 5위: 코스메카코리아 -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 text-gray-900">5</td>
+                            <td class="px-6 py-4 text-gray-900">
+                                <div class="flex items-center gap-3">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1763503836825-97f5450d155a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjBjcmVhbSUyMGphcnxlbnwxfHx8fDE3NjUwNzUwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080" 
+                                        alt="코스메카코리아"
+                                        class="w-12 h-12 rounded-lg object-cover"
+                                    />
+                                    <span>코스메카코리아</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right text-gray-900">1조 5,670억</td>
+                            <td class="px-6 py-4 text-center text-gray-600">#842</td>
+                            <td class="px-6 py-4 text-right text-gray-900">45,600원</td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
+                                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                        <polyline points="16 7 22 7 22 13"></polyline>
+                                    </svg>
+                                    <span class="text-red-600">+3,400원 (8.05%)</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 6위: 코리아나화장품 -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 text-gray-900">6</td>
+                            <td class="px-6 py-4 text-gray-900">
+                                <div class="flex items-center gap-3">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1682251008222-412b140cbf4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpYyUyMGJvdHRsZXxlbnwxfHx8fDE3NjUwNzUwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080" 
+                                        alt="코리아나화장품"
+                                        class="w-12 h-12 rounded-lg object-cover"
+                                    />
+                                    <span>코리아나화장품</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right text-gray-900">9,520억</td>
+                            <td class="px-6 py-4 text-center text-gray-600">#1205</td>
+                            <td class="px-6 py-4 text-right text-gray-900">28,900원</td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
+                                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                        <polyline points="16 7 22 7 22 13"></polyline>
+                                    </svg>
+                                    <span class="text-red-600">+500원 (1.76%)</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 7위: 한국화장품 -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 text-gray-900">7</td>
+                            <td class="px-6 py-4 text-gray-900">
+                                <div class="flex items-center gap-3">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1741896135490-4062a3b21abf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrb3JlYW4lMjBjb3NtZXRpY3N8ZW58MXx8fHwxNzY1MDI2NjI0fDA&ixlib=rb-4.1.0&q=80&w=1080" 
+                                        alt="한국화장품"
+                                        class="w-12 h-12 rounded-lg object-cover"
+                                    />
+                                    <span>한국화장품</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right text-gray-900">7,840억</td>
+                            <td class="px-6 py-4 text-center text-gray-600">#1398</td>
+                            <td class="px-6 py-4 text-right text-gray-900">19,300원</td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                        <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline>
+                                        <polyline points="16 17 22 17 22 11"></polyline>
+                                    </svg>
+                                    <span class="text-blue-600">-400원 (-2.03%)</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 8위: 토니모리 -->
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 text-gray-900">8</td>
+                            <td class="px-6 py-4 text-gray-900">
+                                <div class="flex items-center gap-3">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1655568561429-2da330af5442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjBwcm9kdWN0JTIwcGFja2FnaW5nfGVufDF8fHx8MTc2NTA3NTAxOXww&ixlib=rb-4.1.0&q=80&w=1080" 
+                                        alt="토니모리"
+                                        class="w-12 h-12 rounded-lg object-cover"
+                                    />
+                                    <span>토니모리</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right text-gray-900">5,230억</td>
+                            <td class="px-6 py-4 text-center text-gray-600">#1687</td>
+                            <td class="px-6 py-4 text-right text-gray-900">12,400원</td>
+                            <td class="px-6 py-4 text-right">
+                                <div class="flex items-center justify-end gap-1">
+                                    <span class="text-gray-600">0원 (0%)</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <p class="text-gray-700">
+                <span class="text-gray-900">* 안내:</span> 본 데이터는 예시 데이터입니다. 
+                실시간 데이터를 표시하려면 증권 API와 연동이 필요합니다.
+            </p>
+        </div>
+    </main>
+
+<!-- ✅ Footer -->
+<div th:replace="~{fragments/footer :: footer-fragment ('company')}"></div>
+
+</body>
+</html>
