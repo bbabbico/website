@@ -5,15 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import project7.website.Database.Repository.RankingItem;
-import project7.website.Database.Repository.RankingItemRepository;
-import project7.website.Database.member.Member;
+import project7.website.Database.Repository.RankingItem.RankingItem;
+import project7.website.Database.Repository.RankingItem.RankingItemRepository;
+import project7.website.Database.Repository.member.Member;
 import project7.website.session.SessionConst;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -41,11 +39,8 @@ public class rankingController {
     @ResponseBody
     @PostMapping("/ranking")
     public List<RankingItem> LoadRanking() {
-        List<RankingItem> list = new ArrayList<>(rankingItemRepository.findAll());
-        Map<Integer , RankingItem> result = new HashMap<>();
 
-
-        return list;
+        return new ArrayList<>(rankingItemRepository.findAll());
     }
 
     //실험용페이지

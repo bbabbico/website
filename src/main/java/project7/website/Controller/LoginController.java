@@ -13,7 +13,7 @@ import project7.website.Validtion.SignupFormValidator;
 import project7.website.login.LoginForm;
 import project7.website.Validtion.LoginFormValidator;
 import project7.website.login.LoginService;
-import project7.website.Database.member.Member;
+import project7.website.Database.Repository.member.Member;
 import project7.website.session.SessionConst;
 
 @Slf4j

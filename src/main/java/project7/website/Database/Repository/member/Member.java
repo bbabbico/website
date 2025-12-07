@@ -1,4 +1,4 @@
-package project7.website.Database.member;
+package project7.website.Database.Repository.member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

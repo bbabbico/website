@@ -1,8 +1,9 @@
-package project7.website.Database.member;
+package project7.website.Database.Repository.SavedItem;
 
 import jakarta.persistence.*;
 import lombok.*;
-import project7.website.Database.Repository.RankingItem;
+import project7.website.Database.Repository.RankingItem.RankingItem;
+import project7.website.Database.Repository.member.Member;
 
 @Entity
 @Table(

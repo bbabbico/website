@@ -1,4 +1,4 @@
-package project7.website.Database.Repository;
+package project7.website.Database.Repository.RankingItem;
 
 /**
  * 랭킹 페이지 상품

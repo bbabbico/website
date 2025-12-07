@@ -1,4 +1,4 @@
-package project7.website.Database.Repository;
+package project7.website.Database.Repository.RankingItem;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,13 +25,13 @@ public class RankingItem {
      */
     private int platform;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, length = 1000)
     private String img;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, length = 1000)
     private String url;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 400)
     private String name;
 
     @Column(nullable = false, length = 100)

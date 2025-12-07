@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import project7.website.Database.Repository.RankingItemDTO;
-import project7.website.Database.Repository.SavedItemService;
-import project7.website.Database.member.Member;
+import project7.website.Database.Repository.RankingItem.RankingItemDTO;
+import project7.website.Database.Repository.SavedItem.SavedItemService;
+import project7.website.Database.Repository.member.Member;
 import project7.website.session.SessionConst;
 
 

@@ -1,6 +1,6 @@
 package project7.website.login;
 
-import project7.website.Database.member.Member;
+import project7.website.Database.Repository.member.Member;
 
 import java.util.Optional;
 

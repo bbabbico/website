@@ -1,4 +1,4 @@
-package project7.website.Database.Repository;
+package project7.website.Database.Repository.RankingItem;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

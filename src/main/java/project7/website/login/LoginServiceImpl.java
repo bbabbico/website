@@ -2,8 +2,8 @@ package project7.website.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import project7.website.Database.member.Member;
-import project7.website.Database.member.MemberRepository;
+import project7.website.Database.Repository.member.Member;
+import project7.website.Database.Repository.member.MemberRepository;
 
 import java.util.Optional;
 

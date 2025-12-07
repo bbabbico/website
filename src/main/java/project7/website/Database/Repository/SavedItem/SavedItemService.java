@@ -1,11 +1,13 @@
-package project7.website.Database.Repository;
+package project7.website.Database.Repository.SavedItem;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import project7.website.Database.member.Member;
-import project7.website.Database.member.MemberRepository;
-import project7.website.Database.member.SavedItem;
+import project7.website.Database.Repository.RankingItem.RankingItem;
+import project7.website.Database.Repository.RankingItem.RankingItemDTO;
+import project7.website.Database.Repository.RankingItem.RankingItemRepository;
+import project7.website.Database.Repository.member.Member;
+import project7.website.Database.Repository.member.MemberRepository;
 
 import java.util.Optional;
 

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.thymeleaf.util.StringUtils;
-import project7.website.Database.member.Member;
+import project7.website.Database.Repository.member.Member;
 
 @Slf4j
 @Component

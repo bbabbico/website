@@ -1,8 +1,7 @@
-package project7.website.Database.Repository;
+package project7.website.Database.Repository.SavedItem;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import project7.website.Database.member.Member;
-import project7.website.Database.member.SavedItem;
+
 import java.util.List;
 import java.util.Optional;
 

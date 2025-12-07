@@ -7,9 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import project7.website.Database.Repository.SavedItemRepository;
-import project7.website.Database.Repository.SavedItemService;
-import project7.website.Database.member.Member;
+import project7.website.Database.Repository.SavedItem.SavedItemRepository;
+import project7.website.Database.Repository.member.Member;
 import project7.website.session.SessionConst;
 
 @Slf4j
