@@ -11,4 +11,8 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends JpaRepository<Member,Long> {
     Optional<Member> findByLoginId(String id);
+    
+    // 중복 확인 메서드
+    boolean existsByEmail(String email);
+    boolean existsByLoginId(String loginId);
 }

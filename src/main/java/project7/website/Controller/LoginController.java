@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import project7.website.Database.Repository.member.DuplicateMemberException;
 import project7.website.Validtion.SignupFormValidator;
 import project7.website.login.LoginForm;
 import project7.website.Validtion.LoginFormValidator;
@@ -119,8 +120,20 @@ public class LoginController {
     public String signup(@Validated @ModelAttribute("member") Member member, BindingResult bindingResult) {
         log.info(member.toString());
         if (bindingResult.hasErrors()) {return "login/signup";}
+        try {
+            loginService.join(member);
+        } catch (DuplicateMemberException e) {
+            // 필드별로 에러 붙이기
+            if ("email".equals(e.getField())) {
+                bindingResult.rejectValue("email", "duplicate", e.getMessage());
+            } else if ("loginId".equals(e.getField())) {
+                bindingResult.rejectValue("loginId", "duplicate", e.getMessage());
+            } else {
+                bindingResult.reject("duplicate", e.getMessage());
+            }
+            return "login/signup";
+        }
 
-        loginService.join(member);
         return "redirect:/login"; //리다이렉트는 컨트롤러 매핑 값으로 이동함
 
 //        if ( == null) {
@@ -132,7 +145,7 @@ public class LoginController {
 
     /**
      * 로그아웃 요청
-     * @param request
+     * @param request 세션 정보가 담겨올 객체
      * @return 성공시 전 페이지 redirect
      */
     @PostMapping("/logout")
