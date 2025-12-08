@@ -1,4 +1,4 @@
-SET NAMES utf8mb4;
+SET NAMES utf8mb4; -- 한글 지원 --
 
 CREATE TABLE `company` (
     `id` bigint NOT NULL AUTO_INCREMENT,
@@ -43,7 +43,7 @@ CREATE TABLE `saved_item` (
   CONSTRAINT `FK_SAVED_ITEM_ON_RANKINGITEM` FOREIGN KEY (`rankingitem_id`) REFERENCES `rankingitem` (`id`)
 );
 
-
+-- 테스트용 데이터 --
 INSERT INTO `company` VALUES (3,254500,5,'https://images.unsplash.com/photo-1655568561429-2da330af5442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjBwcm9kdWN0JTIwcGFja2FnaW5nfGVufDF8fHx8MTc2NTA3NTAxOXww&ixlib=rb-4.1.0&q=80&w=1080',9530000000000,'APR',1,'+2.83%'),
                              (4,254500,5,'https://images.unsplash.com/photo-1655568561429-2da330af5442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjBwcm9kdWN0JTIwcGFja2FnaW5nfGVufDF8fHx8MTc2NTA3NTAxOXww&ixlib=rb-4.1.0&q=80&w=1080',9530000000000,'APR',2,'-2.83%'),
                              (5,254500,5,'https://images.unsplash.com/photo-1655568561429-2da330af5442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjBwcm9kdWN0JTIwcGFja2FnaW5nfGVufDF8fHx8MTc2NTA3NTAxOXww&ixlib=rb-4.1.0&q=80&w=1080',9530000000000,'APR',3,'0111');
