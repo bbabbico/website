@@ -30,8 +30,12 @@ public class Member {
     @Column(length = 20 , nullable = false)
     private String name;     //사용자 이름
 
-    @Column(length = 40 , nullable = false)
+    @Column(length = 61 , nullable = false) // BCryptPasswordEncoder
     private String password; //비밀번호
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20 , nullable = false)
+    private Role role;
 
     @Override
     public String toString() {
@@ -41,6 +45,7 @@ public class Member {
                 ", loginId='" + loginId + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
