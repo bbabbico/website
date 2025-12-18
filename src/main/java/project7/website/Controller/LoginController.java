@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import project7.website.Database.Repository.member.DuplicateMemberException;
+import project7.website.Database.Repository.member.Signup_type;
 import project7.website.Validtion.SignupFormValidator;
 import project7.website.login.LoginForm;
 import project7.website.Validtion.LoginFormValidator;
@@ -118,9 +119,11 @@ public class LoginController {
      */
     @PostMapping("/signup")
     public String signup(@Validated @ModelAttribute("member") Member member, BindingResult bindingResult) {
-        log.info(member.toString());
+        log.info(member.toString()); // 체크
         if (bindingResult.hasErrors()) {return "login/signup";}
         try {
+            member.setLogin_type(Signup_type.FORM.name()); // 폼 타입으로 회원가입
+
             loginService.join(member);
         } catch (DuplicateMemberException e) {
             // 필드별로 에러 붙이기
@@ -135,11 +138,6 @@ public class LoginController {
         }
 
         return "redirect:/login"; //리다이렉트는 컨트롤러 매핑 값으로 이동함
-
-//        if ( == null) {
-//            bindingResult.reject("loginFail", "이미 존재하는 회원입니다.");
-//            return "signup";
-//        }
 
     }
 

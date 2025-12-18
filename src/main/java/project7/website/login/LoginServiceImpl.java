@@ -19,6 +19,8 @@ public class LoginServiceImpl implements LoginService {
         this.memberRepository = memberRepository;
     }
 
+
+    // TODO : 시큐리티로 수정 됨.
     @Override
     @Transactional
     public void join(Member member) {
