@@ -49,7 +49,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-	// OAuth 소셜 로그인 github
+	// OAuth 소셜 로그인 github TODO : 소셜 로그인시, ACCESS_TOKEN , JSESSIONID 둘다 생김. 세션으로 처리할 요소 있으면 그냥 사용.
 	@Bean //일반적으로 소셜 로그인은 한번 회원가입 하면 다음부터 로그인할때 소셜 쪽에서 자동으로 로그인 인증해줌.
 	@Order(1)
 	public SecurityFilterChain securityFilterChainOAuth(HttpSecurity http , OAuth2JwtSuccessHandler oAuth2JwtSuccessHandler) throws Exception {
@@ -77,7 +77,9 @@ public class WebSecurityConfig {
 				.csrf(AbstractHttpConfigurer::disable) //CSRF 미사용
 
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/", "/home", "/join", "/login","/favicon.ico").permitAll()
+						.requestMatchers("/", "/error", "/error/**","/ranking/js/*","/favicon.ico","/ranking","/news","/company","/members/add", "/logout","/signup","/test", "/css/*").permitAll()
+						.requestMatchers("/signup","/login").anonymous()
+						.requestMatchers("/ranking/wl").authenticated()
 						.requestMatchers("/admin").hasRole("LOOT")
 						.anyRequest().authenticated()
 				)
@@ -97,6 +99,9 @@ public class WebSecurityConfig {
 						.accessDeniedHandler(customAccessDeniedHandler())
 				);
 		http.logout(logout -> logout //로그아웃 설정 //로그아웃은 get(/logout) 요청이 오면 시큐리티의 기본 LogoutFilter 이 로그아웃 로직을 가로채기 때문에 로그아웃 필터 설정을 해줘야함 아니면 그냥 api/logout 이런식으로 url을 바꿔야함.
+				.invalidateHttpSession(true)  // 서버 세션 무효화
+				.clearAuthentication(true) // SecurityContext 정리
+
 				.logoutUrl("/logout")
 				.logoutSuccessHandler((req, res, auth) -> {
 					ResponseCookie cookie = ResponseCookie.from("ACCESS_TOKEN", "")
@@ -106,7 +111,14 @@ public class WebSecurityConfig {
 							.maxAge(0)
 							.build();
 					res.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
-					res.sendRedirect("/login");
+
+					ResponseCookie session = ResponseCookie.from("JSESSIONID", "")
+							.path("/")
+							.maxAge(0)
+							.build();
+					res.addHeader(HttpHeaders.SET_COOKIE, session.toString());
+
+					res.sendRedirect("/");
 				})
 				.permitAll()
 		);

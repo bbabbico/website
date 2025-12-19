@@ -10,7 +10,7 @@ import project7.website.Database.Repository.member.MemberRepository;
 import java.util.Optional;
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class LoginServiceImpl {
 
     private final MemberRepository memberRepository;
 
@@ -21,10 +21,8 @@ public class LoginServiceImpl implements LoginService {
 
 
     // TODO : 시큐리티로 수정 됨.
-    @Override
     @Transactional
     public void join(Member member) {
-
         // 이메일 중복 체크
         if (memberRepository.existsByEmail(member.getEmail())) {
             throw new DuplicateMemberException("email", "이미 사용 중인 이메일입니다.");
@@ -38,19 +36,8 @@ public class LoginServiceImpl implements LoginService {
         memberRepository.save(member);
     }
 
-
-    @Override
     public Optional<Member> findByLoginId(String loginId){
         return memberRepository.findByLoginId(loginId);
     }
 
-    /**
-     * @return null 로그인 실패
-     */
-    @Override
-    public Member login(String loginId, String password) {
-        return memberRepository.findByLoginId(loginId)
-                .filter(m -> m.getPassword().equals(password))
-                .orElse(null);
-    }
 }

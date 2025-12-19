@@ -53,6 +53,7 @@ public class OAuth2JwtSuccessHandler implements AuthenticationSuccessHandler {
             m.setEmail(email);
             m.setName(finalName);
             m.setRole(Role.USER);
+            m.setSignup_type("github");
 
             // 엔티티가 nullable=false라서 반드시 채워야 함
             m.setLoginId(loginId);
@@ -88,6 +89,6 @@ public class OAuth2JwtSuccessHandler implements AuthenticationSuccessHandler {
         res.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
         // 4) 성공 후 이동
-        res.sendRedirect("/hello");
+        res.sendRedirect("/");
     }
 }

@@ -34,9 +34,9 @@
     <div class="flex items-center space-x-4">
 
       <!-- 로그인 상태: 회원 이름 + 로그아웃 -->
-      <div class="flex items-center space-x-3" th:if="${member}">
+      <div class="flex items-center space-x-3" th:if="${name}">
                     <span class="text-gray-700 font-medium">
-                        환영합니다, <a href="mypage" class="text-emerald-600 font-semibold" th:text="${member.name}"></a> 님 👋
+                        환영합니다, <a href="/mypage" class="text-emerald-600 font-semibold" th:text="${name}"></a> 님 👋
                     </span>
 
         <form action="/logout" method="post">
@@ -48,7 +48,7 @@
       </div>
 
       <!-- 비로그인 상태: 로그인 / 회원가입 -->
-      <div class="flex items-center space-x-3" th:unless="${member}">
+      <div class="flex items-center space-x-3" th:unless="${name}">
         <form action="/login" method="get">
           <button type="submit"
                   class="px-4 py-2 text-gray-700 font-medium hover:text-emerald-600 transition">

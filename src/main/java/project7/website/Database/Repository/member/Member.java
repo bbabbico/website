@@ -38,7 +38,7 @@ public class Member {
     private Role role;
 
     @Column(length = 10 , nullable = false)
-    private String login_type; // 로그인 방식이 소셜 로그인 / 폼 방식인지 체크
+    private String signup_type; // 로그인 방식이 소셜 로그인 / 폼 방식인지 체크
 
     @Override
     public String toString() {
@@ -49,7 +49,7 @@ public class Member {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
-                ", login_type='" + login_type + '\'' +
+                ", login_type='" + signup_type + '\'' +
                 '}';
     }
 }

@@ -5,11 +5,9 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
-import org.springframework.security.oauth2.jwt.JwsHeader;
-import org.springframework.security.oauth2.jwt.JwtClaimsSet;
-import org.springframework.security.oauth2.jwt.JwtEncoder;
-import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Service;
+import project7.website.Database.Repository.member.MemberRepository;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -21,10 +19,12 @@ import java.util.List;
 public class JwtService {
 
     private final JwtEncoder jwtEncoder;
+    private final MemberRepository memberRepository;
 
     public ResponseCookie Jwt(Authentication auth) {
         // 2) JWT 클레임 구성
         Instant now = Instant.now(); //절대 시간 반환
+        String name = memberRepository.findByLoginId(auth.getName()).get().getName();
 
         List<String> roles = auth.getAuthorities().stream() //ROLE 추출
                 .map(GrantedAuthority::getAuthority)
@@ -37,6 +37,7 @@ public class JwtService {
                 .expiresAt(now.plus(1, ChronoUnit.HOURS))   // 토큰 만료 시간
                 .subject(auth.getName())                                // 토큰 사용자 - principle의 username/loginId 같은것
                 .claim("roles", roles)                            // 위에서 JwtGrantedAuthoritiesConverter 가 ROLE_ 붙여줌
+                .claim("name", name)
                 .build();
 
         // 3) 서명해서 토큰 쿠키로 발급

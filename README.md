@@ -20,3 +20,5 @@ Docker Compose
 news 데이터베이스
 
 company 외래키
+
+TODO : 소셜 로그인시, ACCESS_TOKEN , JSESSIONID 둘다 생김. 세션으로 처리할 요소 있으면 그냥 사용.

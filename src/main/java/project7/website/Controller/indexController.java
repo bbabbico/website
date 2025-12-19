@@ -1,5 +1,7 @@
 package project7.website.Controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +22,15 @@ public class indexController {
      * URL에 jsessionid 포함하지 않음.
      */
     @GetMapping("/")
-    public String index(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
-
-        //세션에 회원 데이터가 없으면 빈 Model 전달
-        if (loginMember == null) {
-            return "index";
+    public String index(@AuthenticationPrincipal Jwt jwt , Model model) {
+        if (jwt != null) { //로그인 세션 존재하면 view 전달
+            String name = jwt.getClaimAsString("name");
+            model.addAttribute("name", name);
+        } else {
+            return "/index"; //세션에 회원 데이터가 없으면 빈 Model 전달
         }
 
-        //로그인 세션 존재하면 view 전달
-        model.addAttribute("member", loginMember);
+
         return "index";
     }
 

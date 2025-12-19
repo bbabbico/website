@@ -2,6 +2,8 @@ package project7.website.Controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,15 +25,13 @@ public class rankingController {
 
 
     @GetMapping("/ranking")
-    public String ranking(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember , Model model) {
-
-        //세션에 회원 데이터가 없으면 빈 Model 전달
-        if (loginMember == null) {
-            return  "mainmenu/ranking";
+    public String ranking(@AuthenticationPrincipal Jwt jwt , Model model) {
+        if (jwt != null) { //로그인 세션 존재하면 view 전달
+            String name = jwt.getClaimAsString("name");
+            model.addAttribute("name", name);
+        } else {
+            return "mainmenu/ranking"; //세션에 회원 데이터가 없으면 빈 Model 전달
         }
-
-        //로그인 세션 존재하면 view 전달
-        model.addAttribute("member", loginMember);
         return  "mainmenu/ranking";
     }
 
