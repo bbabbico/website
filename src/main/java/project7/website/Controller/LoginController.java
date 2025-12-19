@@ -1,19 +1,14 @@
 package project7.website.Controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -25,10 +20,8 @@ import project7.website.Database.Repository.member.Signup_type;
 import project7.website.Security.JwtService;
 import project7.website.Security.WebSecurityConfig;
 import project7.website.Validtion.SignupFormValidator;
-import project7.website.Validtion.LoginFormValidator;
 import project7.website.Database.Repository.member.Member;
 import project7.website.login.LoginServiceImpl;
-import project7.website.session.SessionConst;
 
 import java.io.IOException;
 
@@ -37,7 +30,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class LoginController {
 
-    private final LoginFormValidator loginFormValidator;
     private final SignupFormValidator  signupFormValidator;
     private final LoginServiceImpl loginServiceImpl;
     private final PasswordEncoder passwordEncoder;
@@ -50,7 +42,7 @@ public class LoginController {
      */
     @InitBinder("loginForm") //TODO : 로그인 검증로직 시큐리티로 구현필요
     public void initLoginFormBinder(WebDataBinder binder) {
-        binder.addValidators(loginFormValidator);
+        binder.addValidators();
     } 
     /**
      * Member(Signup) 전용 검증기
@@ -112,7 +104,7 @@ public class LoginController {
         return "redirect:/login"; //리다이렉트는 컨트롤러 매핑 값으로 이동함
 
     }
-    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE) // 로그인 정보가 폼 방식으로 오기 때문에 @RequestParam 으로 받아야함
     public void login(@RequestParam String loginId,
                       @RequestParam String password,
                       HttpServletResponse response) throws IOException {
