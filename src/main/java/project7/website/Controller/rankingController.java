@@ -9,8 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project7.website.Database.Repository.RankingItem.RankingItem;
 import project7.website.Database.Repository.RankingItem.RankingItemRepository;
-import project7.website.Database.Repository.member.Member;
-import project7.website.session.SessionConst;
+import project7.website.Security.AuthenticatedUserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +21,12 @@ public class rankingController {
 
 
     private final RankingItemRepository rankingItemRepository;
+    private final AuthenticatedUserService authenticatedUserService;
 
 
     @GetMapping("/ranking")
     public String ranking(@AuthenticationPrincipal Jwt jwt , Model model) {
-        if (jwt != null) { //로그인 세션 존재하면 view 전달
-            String name = jwt.getClaimAsString("name");
-            model.addAttribute("name", name);
-        } else {
-            return "mainmenu/ranking"; //세션에 회원 데이터가 없으면 빈 Model 전달
-        }
+        authenticatedUserService.addUserName(jwt, model);
         return  "mainmenu/ranking";
     }
 
