@@ -23,10 +23,9 @@ public class WatchListController {
     @ResponseBody
     @PostMapping("/ranking/wl")
     public RankingItemDTO addWatchList(@AuthenticationPrincipal Jwt jwt , @RequestBody RankingItemDTO rankingItemDTO) {
-        RankingItemDTO result = rankingItemDTO;
         authenticatedUserService.findMember(jwt)
-                .ifPresentOrElse(member -> log.info(savedItemService.saveItem(member.getId(),result)), () -> log.info("login required"));
+                .ifPresentOrElse(member -> log.info(savedItemService.saveItem(member.getId(), rankingItemDTO)), () -> log.info("login required"));
 
-        return result;
+        return rankingItemDTO;
     }
 }

@@ -8,8 +8,10 @@ import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -19,6 +21,8 @@ import project7.website.Database.Repository.member.Role;
 import project7.website.Database.Repository.member.Signup_type;
 import project7.website.Security.JwtService;
 import project7.website.Security.WebSecurityConfig;
+import project7.website.Validtion.LoginForm;
+import project7.website.Validtion.LoginFormValidator;
 import project7.website.Validtion.SignupFormValidator;
 import project7.website.Database.Repository.member.Member;
 import project7.website.login.LoginServiceImpl;
@@ -30,7 +34,8 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class LoginController {
 
-    private final SignupFormValidator  signupFormValidator;
+    private final LoginFormValidator loginFormValidator;
+    private final SignupFormValidator signupFormValidator;
     private final LoginServiceImpl loginServiceImpl;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -40,9 +45,9 @@ public class LoginController {
     /**
      * LoginForm 전용 검증기 
      */
-    @InitBinder("loginForm") //TODO : 로그인 검증로직 시큐리티로 구현필요
+    @InitBinder("loginForm")
     public void initLoginFormBinder(WebDataBinder binder) {
-        binder.addValidators();
+        binder.addValidators(loginFormValidator);
     } 
     /**
      * Member(Signup) 전용 검증기
@@ -58,7 +63,8 @@ public class LoginController {
      * @return login Thymeleaf 페이지 (익명 사용자만 접근가능) {@link WebSecurityConfig securityFilterChainJWT}
      */
     @GetMapping("/login")
-    public String login(){
+    public String login(Model model) {
+        model.addAttribute("loginForm", new LoginForm());
         return "login/login";
     }
 
@@ -67,7 +73,8 @@ public class LoginController {
      * @return signup Thymeleaf 페이지
      */
     @GetMapping("/signup")
-    public String signupForm() {
+    public String signupForm(Model model) {
+        model.addAttribute("member", new Member());
         return "login/signup";
     }
 
@@ -82,12 +89,12 @@ public class LoginController {
         member.setSignup_type(Signup_type.FORM.name()); // 폼 타입으로 회원가입
         member.setRole(Role.USER);
 
-        member.setPassword(passwordEncoder.encode(member.getPassword()));
-
-        log.info(member.toString()); // 체크
-
-        if (bindingResult.hasErrors()) {return "login/signup";}
+        if (bindingResult.hasErrors()) {
+            member.setPassword(null);
+            return "login/signup";
+        }
         try {
+            member.setPassword(passwordEncoder.encode(member.getPassword()));
             loginServiceImpl.join(member);
         } catch (DuplicateMemberException e) {
             // 필드별로 에러 붙이기
@@ -98,23 +105,33 @@ public class LoginController {
             } else {
                 bindingResult.reject("duplicate", e.getMessage());
             }
+            member.setPassword(null);
             return "login/signup";
         }
 
         return "redirect:/login"; //리다이렉트는 컨트롤러 매핑 값으로 이동함
 
     }
-    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE) // 로그인 정보가 폼 방식으로 오기 때문에 @RequestParam 으로 받아야함
-    public void login(@RequestParam String loginId,
-                      @RequestParam String password,
-                      HttpServletResponse response) throws IOException {
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String login(@Validated @ModelAttribute("loginForm") LoginForm loginForm,
+                        BindingResult bindingResult,
+                        HttpServletResponse response) {
 
-        // 1) 아이디/비번 인증 (내부적으로 ProviderManager/DaoAuthenticationProvider 등 사용)
-        Authentication auth = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginId, password)
-        );
+        if (bindingResult.hasErrors()) {
+            return "login/login";
+        }
 
-        response.addHeader(HttpHeaders.SET_COOKIE, jwtService.Jwt(auth).toString());
-        response.sendRedirect("/"); // 사이트 리다이렉트
+        try {
+            Authentication auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginForm.getLoginId(), loginForm.getPassword())
+            );
+
+            response.addHeader(HttpHeaders.SET_COOKIE, jwtService.Jwt(auth).toString());
+        } catch (AuthenticationException e) {
+            bindingResult.reject("login.failed", "아이디 또는 비밀번호가 올바르지 않습니다.");
+            return "login/login";
+        }
+
+        return "redirect:/"; // 사이트 리다이렉트
     }
 }

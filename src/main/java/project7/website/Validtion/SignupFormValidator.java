@@ -23,14 +23,14 @@ public class SignupFormValidator implements Validator {
         if (StringUtils.isEmpty(form.getEmail())) {
             errors.rejectValue("email", "empty", "공백은 입력할 수 없습니다.");
         } else if (form.getEmail().length() < 4 || form.getEmail().length() > 100) {
-            errors.rejectValue("email", "length", "4~20자로 입력해주세요.");
+            errors.rejectValue("email", "length", "100자 이내로 입력해주세요.");
         }
 
         // loginId 검증
         if (StringUtils.isEmpty(form.getLoginId())) {
             errors.rejectValue("loginId", "empty", "공백은 입력할 수 없습니다.");
-        } else if (form.getLoginId().length() < 4 || form.getLoginId().length() > 20) {
-            errors.rejectValue("loginId", "length", "4~20자로 입력해주세요.");
+        } else if (form.getLoginId().length() < 4 || form.getLoginId().length() > 30) {
+            errors.rejectValue("loginId", "length", "4~30자로 입력해주세요.");
         }
 
         // name 검증
@@ -43,8 +43,8 @@ public class SignupFormValidator implements Validator {
         // password 검증
         if (StringUtils.isEmpty(form.getPassword())) {
             errors.rejectValue("password", "empty", "공백은 입력할 수 없습니다.");
-        } else if (form.getPassword().length() < 4 || form.getPassword().length() > 40) {
-            errors.rejectValue("password", "length", "4~40자로 입력해주세요.");
+        } else if (form.getPassword().length() < 4 || form.getPassword().length() > 61) {
+            errors.rejectValue("password", "length", "4~61자로 입력해주세요.");
         }
     }
 }
