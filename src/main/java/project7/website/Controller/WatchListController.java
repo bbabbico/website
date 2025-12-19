@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import project7.website.Database.Repository.RankingItem.RankingItemDTO;
 import project7.website.Database.Repository.SavedItem.SavedItemService;
-import project7.website.Database.Repository.member.Member;
-import project7.website.Database.Repository.member.MemberRepository;
+import project7.website.Security.AuthenticatedUserService;
 
 
 @Slf4j
@@ -19,19 +18,14 @@ import project7.website.Database.Repository.member.MemberRepository;
 @RequiredArgsConstructor
 public class WatchListController {
     private final SavedItemService savedItemService;
-    private final MemberRepository memberRepository;
+    private final AuthenticatedUserService authenticatedUserService;
 
     @ResponseBody
     @PostMapping("/ranking/wl")
     public RankingItemDTO addWatchList(@AuthenticationPrincipal Jwt jwt , @RequestBody RankingItemDTO rankingItemDTO) {
         RankingItemDTO result = rankingItemDTO;
-        String loginId = jwt.getSubject();
-        if (loginId == null) {
-            result = null;
-        } else {
-            Member member = memberRepository.findByLoginId(loginId).get(); //회원 고유 식별 ID 조회
-            log.info(savedItemService.saveItem(member.getId(),result));
-        }
+        authenticatedUserService.findMember(jwt)
+                .ifPresentOrElse(member -> log.info(savedItemService.saveItem(member.getId(),result)), () -> log.info("login required"));
 
         return result;
     }
