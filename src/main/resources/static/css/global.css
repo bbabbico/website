@@ -1,0 +1,11 @@
+/* Global typography to align with the company page styling */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, button {
+    font-family: inherit;
+}
